@@ -27,31 +27,32 @@ public class RoomStatusController {
     public List<RoomStatus> getAllRoomStatus() {
         return roomStatusService.getAllRoomStatus();
     }
-     
-     @GetMapping("/{id}")
-     public ResponseEntity<RoomStatus> getRoomStatusById(@PathVariable(value = "id") int roomStatusId) {
-         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
-         if (roomStatus == null) {
-             return ResponseEntity.notFound().build();
-         }
-         return ResponseEntity.ok().body(roomStatus);
-     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<RoomStatus> getRoomStatusById(@PathVariable(value = "id") int roomStatusId) {
+        RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
+        if (roomStatus == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(roomStatus);
+    }
 
     @PostMapping("")
-    public ResponseEntity createRoomStatus(@RequestBody Map<String,String> roomStatusrequestbody) {
+    public ResponseEntity createRoomStatus(@RequestBody Map<String, String> roomStatusrequestbody) {
         try {
             RoomStatus roomstatus = new RoomStatus();
-        roomstatus.setStatus(roomStatusrequestbody.get("status"));
-        roomStatusService.createRoomStatus(roomstatus);
-        return new ResponseEntity<>("Room created successfully", HttpStatus.CREATED);
+            roomstatus.setStatus(roomStatusrequestbody.get("status"));
+            roomStatusService.createRoomStatus(roomstatus);
+            return new ResponseEntity<>("Room status created successfully", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error creating offer: " + e.getMessage());
         }
-        
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoomStatus> updateRoomStatus(@PathVariable(value = "id") int roomStatusId, @RequestBody RoomStatus roomStatusDetails) {
+    public ResponseEntity<RoomStatus> updateRoomStatus(@PathVariable(value = "id") int roomStatusId,
+            @RequestBody RoomStatus roomStatusDetails) {
         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
         if (roomStatus == null) {
             return ResponseEntity.notFound().build();
