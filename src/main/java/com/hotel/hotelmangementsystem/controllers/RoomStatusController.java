@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import com.hotel.hotelmangementsystem.models.RoomStatus;
 import com.hotel.hotelmangementsystem.services.RoomStatusService;
@@ -38,11 +39,15 @@ public class RoomStatusController {
 
     @PostMapping("")
     public ResponseEntity createRoomStatus(@RequestBody Map<String,String> roomStatusrequestbody) {
-        
-        RoomStatus roomstatus = new RoomStatus();
+        try {
+            RoomStatus roomstatus = new RoomStatus();
         roomstatus.setStatus(roomStatusrequestbody.get("status"));
         roomStatusService.createRoomStatus(roomstatus);
-        return new ResponseEntity<>("Offer created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Room created successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error creating offer: " + e.getMessage());
+        }
+        
     }
 
     @PutMapping("/{id}")
