@@ -1,7 +1,9 @@
 package com.hotel.hotelmangementsystem.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,47 +14,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.hotelmangementsystem.models.RoomStatus;
+import com.hotel.hotelmangementsystem.services.RoomStatusService;
 
 @RestController
-@RequestMapping("/room-status")
+@RequestMapping("/api/roomstatus")
 public class RoomStatusController {
+    @Autowired
+    private RoomStatusService roomStatusService;
 
-    private List<RoomStatus> roomStatusList = new ArrayList<>();
-
-    // GET request to get the status of a room by ID
-    @GetMapping("/{id}")
-    public RoomStatus getRoomStatus(@PathVariable int id) {
-        return roomStatusList.stream()
-                .filter(roomStatus -> roomStatus.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    // POST request to set the status of a room by ID
-    @PostMapping("/{id}")
-    public void setRoomStatus(@PathVariable int id, @RequestBody String status) {
-        RoomStatus roomStatus = new RoomStatus(id, status);
-        roomStatusList.add(roomStatus);
-    }
-
-    // DELETE request to remove the status of a room by ID
-    @DeleteMapping("/{id}")
-    public void deleteRoomStatus(@PathVariable int id) {
-        roomStatusList.removeIf(roomStatus -> roomStatus.getId() == id);
-    }
-
-    // PUT request to update the status of a room by ID
-    @PutMapping("/{id}")
-    public void updateRoomStatus(@PathVariable int id, @RequestBody String status) {
-        roomStatusList.stream()
-                .filter(roomStatus -> roomStatus.getId() == id)
-                .findFirst()
-                .ifPresent(roomStatus -> roomStatus.setStatus(status));
-    }
-
-    // GET request to get all room statuses
     @GetMapping("/")
     public List<RoomStatus> getAllRoomStatus() {
-        return roomStatusList;
+        return roomStatusService.getAllRoomStatus();
+    }
+     
+     @GetMapping("/{id}")
+     public ResponseEntity<RoomStatus> getRoomStatusById(@PathVariable(value = "id") int roomStatusId) {
+         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
+         if (roomStatus == null) {
+             return ResponseEntity.notFound().build();
+         }
+         return ResponseEntity.ok().body(roomStatus);
+     }
+
+    @PostMapping("")
+    public ResponseEntity createRoomStatus(@RequestBody Map<String,String> roomStatusrequestbody) {
+        
+        RoomStatus roomstatus = new RoomStatus();
+        roomstatus.setStatus(roomStatusrequestbody.get("status"));
+        roomStatusService.createRoomStatus(roomstatus);
+        return new ResponseEntity<>("Offer created successfully", HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<RoomStatus> updateRoomStatus(@PathVariable(value = "id") int roomStatusId, @RequestBody RoomStatus roomStatusDetails) {
+        RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
+        if (roomStatus == null) {
+            return ResponseEntity.notFound().build();
+        }
+        roomStatus.setStatus(roomStatusDetails.getStatus());
+        RoomStatus updatedRoomStatus = roomStatusService.saveRoomStatus(roomStatus);
+        return ResponseEntity.ok(updatedRoomStatus);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RoomStatus> deleteRoomStatus(@PathVariable(value = "id") int roomStatusId) {
+        RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
+        if (roomStatus == null) {
+            return ResponseEntity.notFound().build();
+        }
+        roomStatusService.deleteRoomStatus(roomStatus);
+        return ResponseEntity.ok().build();
     }
 }

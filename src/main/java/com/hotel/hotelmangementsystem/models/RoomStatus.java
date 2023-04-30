@@ -1,21 +1,29 @@
 package com.hotel.hotelmangementsystem.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "roomstatus")
 public class RoomStatus {
-    private int id;
-    private String status;
-
-    public RoomStatus(int id, String status) {
-        this.id = id;
-        this.status = status;
-    }
-
-    public int getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    @Column(name = "status")
+    private String status;
 
     public String getStatus() {
         return status;
@@ -24,4 +32,5 @@ public class RoomStatus {
     public void setStatus(String status) {
         this.status = status;
     }
+ 
 }
