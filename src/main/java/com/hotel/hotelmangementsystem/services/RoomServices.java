@@ -9,5 +9,9 @@ import com.hotel.hotelmangementsystem.repositories.RoomRepository;
 public class RoomServices {
     @Autowired
     private RoomRepository roomRepository;
+
+    public void createRoom(com.hotel.hotelmangementsystem.models.Room room) {
+        roomRepository.save(room);
+    }
     
 }
