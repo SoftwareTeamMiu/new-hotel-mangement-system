@@ -15,15 +15,15 @@ public class Room {
     private int id;
     private double price;
 
-    @ManyToOne(targetEntity = RoomType.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = RoomType.class, optional = false)
     @JoinColumn(name = "room_type_id", referencedColumnName = "id", nullable = false)
     private RoomType roomType;
 
-    @ManyToOne(targetEntity = RoomStatus.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = RoomStatus.class, optional = false)
     @JoinColumn(name = "room_status_id", referencedColumnName = "id", nullable = false)
     private RoomStatus roomStatus;
     
-    @ManyToOne(targetEntity = Offer.class, optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Offer.class, optional = true)
     @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = true)
     private Offer offer;
 

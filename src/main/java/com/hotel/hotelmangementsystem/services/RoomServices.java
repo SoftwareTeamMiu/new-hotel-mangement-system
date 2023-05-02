@@ -25,4 +25,8 @@ public class RoomServices {
         return roomRepository.findById(id).orElse(null);
     }
 
+    public void deleteRoomById(int id) {
+        roomRepository.deleteById(id);
+    }
+
 }
