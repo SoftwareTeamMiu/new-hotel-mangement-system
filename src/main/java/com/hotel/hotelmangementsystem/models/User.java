@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class User {
@@ -26,7 +27,7 @@ public class User {
     private String email;
     @NotBlank(message = "Password is required")
     private String password;
-    @NotBlank(message = "Role is required")
+    @NotNull(message = "Role is required")
     @ManyToOne(targetEntity = Role.class, optional = false)
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
