@@ -30,4 +30,8 @@ public class RoleService {
         roleRepository.deleteById(id);
         return "Role with id " + id + " deleted";
     }
+
+    public Role findRoleByRoleTitle(String roleTitle) {
+        return roleRepository.findRoleByRoleTitle(roleTitle);
+    }
 }

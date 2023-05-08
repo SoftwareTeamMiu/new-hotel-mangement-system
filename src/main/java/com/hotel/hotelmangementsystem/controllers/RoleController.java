@@ -60,7 +60,7 @@ public class RoleController {
     public ResponseEntity createRole(@RequestBody Map<String, String> body) {
         try {
             Role newRole = new Role();
-            newRole.setRole_title(body.get("role_title"));
+            newRole.setroleTitle(body.get("roleTitle"));
             // Perform validation using javax.validation.Validator
             Validator validator = Validation.buildDefaultValidatorFactory()
                     .getValidator();
@@ -87,7 +87,7 @@ public class RoleController {
             if (role == null) {
                 return ResponseEntity.badRequest().body("Role with id " + id + " not found");
             }
-            role.setRole_title(body.get("role_title"));
+            role.setroleTitle(body.get("roleTitle"));
             // Perform validation using javax.validation.Validator
             Validator validator = Validation.buildDefaultValidatorFactory()
                     .getValidator();

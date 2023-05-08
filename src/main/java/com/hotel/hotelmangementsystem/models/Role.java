@@ -14,11 +14,11 @@ public class Role {
     private int id;
     @NotBlank(message = "Role title is required")
     @Column(unique = true)
-    private String role_title;
+    private String roleTitle;
 
-    public Role(int id, String role_title) {
+    public Role(int id, String roleTitle) {
         this.id = id;
-        this.role_title = role_title;
+        this.roleTitle = roleTitle;
     }
 
     public Role() {
@@ -29,18 +29,17 @@ public class Role {
         return this.id;
     }
 
-    public String getRole_title() {
-        return this.role_title;
+    public String getroleTitle() {
+        return this.roleTitle;
     }
 
-    public void setRole_title(String role_title) {
-        this.role_title = role_title;
+    public void setroleTitle(String roleTitle) {
+        this.roleTitle = roleTitle;
     }
 
     @Override
     public String toString() {
-        return "{" + " id='" + getId() + "'" + ", role_title='" + getRole_title() + "'" + "}";
+        return "{" + " id='" + getId() + "'" + ", roleTitle='" + getroleTitle() + "'" + "}";
     }
-
 
 }
