@@ -1,15 +1,19 @@
 package com.hotel.hotelmangementsystem.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Role title is required")
+    @Column(unique = true)
     private String role_title;
 
     public Role(int id, String role_title) {
