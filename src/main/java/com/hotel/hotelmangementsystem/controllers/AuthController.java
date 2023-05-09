@@ -26,7 +26,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
