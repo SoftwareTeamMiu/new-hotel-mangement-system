@@ -71,6 +71,7 @@ public class ReservationController {
             for (int i = 0; i < room_ids.size(); i++) {
                 Room room = new Room();
                 room = roomServices.getRoomById(room_ids.get(i));
+                rooms.add(room);
             }
             for (int i = 0; i < rooms.size(); i++) {
                 if (rooms.get(i).getOffer() != null) {
@@ -80,6 +81,7 @@ public class ReservationController {
                     total_price += rooms.get(i).getPrice();
                 }
             }
+
             reservation.setStart_date(start_date);
             reservation.setEnd_date(end_date);
             reservation.setCustomer(user);
@@ -87,42 +89,44 @@ public class ReservationController {
             reservation.setPaymentMethods(paymentMethods);
             reservation.setReservationStatus(reservationStatus);
             reservation.setTotal_price(total_price);
+
             reservationService.createReservation(reservation);
 
-            return ResponseEntity.ok().body("Reservation Created");
+            return ResponseEntity.ok().body("Reservation Created Successfully");
 
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error Creating Reservation,"+e.getMessage());
+            return ResponseEntity.badRequest().body("Error Creating Reservation," + e.getMessage());
         }
     }
 
     @GetMapping("")
-    public ResponseEntity getAllReservations(){
-        try{
+    public ResponseEntity getAllReservations() {
+        try {
             List<Reservation> reservations = reservationService.getAllReservations();
             return ResponseEntity.ok(reservations);
-        }catch(Exception e){
-            return ResponseEntity.badRequest().body("Error getting reservations: "+ e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error getting reservations: " + e.getMessage());
         }
     }
 
     @GetMapping("/{reservationID}")
-    public ResponseEntity getReservationById(@PathVariable int reservationID){
-        try{
+    public ResponseEntity getReservationById(@PathVariable int reservationID) {
+        try {
             Reservation reservation = reservationService.getReservationByID(reservationID);
             return ResponseEntity.ok(reservation);
-        }catch(Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error getting reservation by id: " + e.getMessage());
         }
     }
 
-//    @DeleteMapping("/{reservationID}")
-//    public ResponseEntity deleteReservationByID(@PathVariable int reservationId){
-//        try{
-//            Reservation reservation = reservationService.getReservationByID(reservationId);
-//            if(reservation != null){
-//
-//            }
-//        }
-//    }
+    // @DeleteMapping("/{reservationID}")
+    // public ResponseEntity deleteReservationByID(@PathVariable int reservationId){
+    // try{
+    // Reservation reservation =
+    // reservationService.getReservationByID(reservationId);
+    // if(reservation != null){
+    //
+    // }
+    // }
+    // }
 }
