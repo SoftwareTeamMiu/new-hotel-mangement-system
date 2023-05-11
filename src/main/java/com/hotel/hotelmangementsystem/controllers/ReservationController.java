@@ -92,8 +92,37 @@ public class ReservationController {
             return ResponseEntity.ok().body("Reservation Created");
 
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error Creating Reservation");
+            return ResponseEntity.badRequest().body("Error Creating Reservation,"+e.getMessage());
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity getAllReservations(){
+        try{
+            List<Reservation> reservations = reservationService.getAllReservations();
+            return ResponseEntity.ok(reservations);
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body("Error getting reservations: "+ e.getMessage());
+        }
+    }
+
+    @GetMapping("/{reservationID}")
+    public ResponseEntity getReservationById(@PathVariable int reservationID){
+        try{
+            Reservation reservation = reservationService.getReservationByID(reservationID);
+            return ResponseEntity.ok(reservation);
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body("Error getting reservation by id: " + e.getMessage());
+        }
+    }
+
+//    @DeleteMapping("/{reservationID}")
+//    public ResponseEntity deleteReservationByID(@PathVariable int reservationId){
+//        try{
+//            Reservation reservation = reservationService.getReservationByID(reservationId);
+//            if(reservation != null){
+//
+//            }
+//        }
+//    }
 }
