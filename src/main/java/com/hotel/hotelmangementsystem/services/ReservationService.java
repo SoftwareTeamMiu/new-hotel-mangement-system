@@ -20,4 +20,6 @@ public class ReservationService {
     public List<Reservation> getAllReservations(){return reservationRepository.findAll();}
 
     public Reservation getReservationByID(int id){return reservationRepository.findById(id).orElse(null);}
+
+    public void deleteReservationByID(int id){reservationRepository.deleteById(id);}
 }
