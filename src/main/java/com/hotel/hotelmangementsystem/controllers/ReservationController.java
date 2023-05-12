@@ -119,14 +119,52 @@ public class ReservationController {
         }
     }
 
-    // @DeleteMapping("/{reservationID}")
-    // public ResponseEntity deleteReservationByID(@PathVariable int reservationId){
-    // try{
-    // Reservation reservation =
-    // reservationService.getReservationByID(reservationId);
-    // if(reservation != null){
-    //
-    // }
-    // }
-    // }
+     @DeleteMapping("/{reservationID}")
+     public ResponseEntity deleteReservationByID(@PathVariable int reservationID){
+        try{
+            Reservation reservation = reservationService.getReservationByID(reservationID);
+            if(reservation != null){
+            reservationService.deleteReservationByID(reservationID);
+            return ResponseEntity.ok("Reservation deleted successfully");
+
+            } else{
+                return ResponseEntity.badRequest().body("Reservation not found");
+            }
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Error deleting Reservation: " + e.getMessage());
+        }
+     }
+
+     @PutMapping("/{ReservationID}")
+    public ResponseEntity updateReservationID(@PathVariable int ReservationID, @RequestBody Map<String, String> request_body){
+        try{
+            Reservation reservation = reservationService.getReservationByID(ReservationID);
+            if(reservation!=null){
+                if(request_body.get("end_date")!= null){
+                    reservation.setEnd_date(new Date(request_body.get("end_date")));
+                }
+                if(request_body.get("start_date")!= null){
+                    reservation.setStart_date(new Date(request_body.get("start_date")));
+                }
+                if(request_body.get("total_price")!=null){
+                    reservation.setTotal_price(Double.parseDouble(request_body.get("total_price")));
+                }
+                if(request_body.get("user_id")!=null){
+                    reservation.setCustomer(userService.getUserById(String.valueOf(request_body.get("user_id"))));
+                }
+                if(request_body.get("payment_methods_id")!=null){
+                    reservation.setPaymentMethods(paymentMethodsService.getPaymentMethodByID(Integer.parseInt(request_body.get("payment_methods_id"))));
+                }
+                if(request_body.get("reservations_status_id")!=null){
+                    reservation.setReservationStatus(reservationStatusService.getReservationStatusById(Integer.parseInt(request_body.get("reservations_status_id"))));
+                }
+                reservationService.createReservation(reservation);
+                return ResponseEntity.ok("Reservation updated successfully!");
+            }else{
+                return ResponseEntity.badRequest().body("Reservation not found");
+            }
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Error updating Reservation: " + e.getMessage());
+        }
+    }
 }
