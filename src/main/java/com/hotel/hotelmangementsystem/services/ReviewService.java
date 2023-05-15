@@ -31,20 +31,28 @@ public class ReviewService {
     List<String> errorMessages = new ArrayList<>();
 
     public ResponseEntity createReview(Map<String, Object> body, String token) {
-        try{
-        Review review = new Review();
-        review.setUser(userService.getUserByToken(token));
-        review.setReview_title(( String) body.get("review_title"));
-        review.setReview_description(( String) body.get("review_description"));
-        if(validateReview(review)){
-            return new ResponseEntity<List<String>>(errorMessages, HttpStatus.BAD_REQUEST);
-        }else{
-            reviewRepository.save(review);
-            return ResponseEntity.ok("Review Created");
+        try {
+            Review review = new Review();
+            review.setUser(userService.getUserByToken(token));
+            review.setReview_title((String) body.get("review_title"));
+            review.setReview_description((String) body.get("review_description"));
+            if (validateReview(review)) {
+                return new ResponseEntity<List<String>>(errorMessages, HttpStatus.BAD_REQUEST);
+            } else {
+                reviewRepository.save(review);
+                return new ResponseEntity<>("Review Created", HttpStatus.CREATED);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error Creating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-    }catch (Exception e) {
-        return new ResponseEntity<String>("Error Creating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    public ResponseEntity getAllReviews(){
+        try {
+            return new ResponseEntity<>(reviewRepository.findAll(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error Creating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     public boolean validateReview(Review review) {
