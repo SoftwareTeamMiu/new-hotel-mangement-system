@@ -89,6 +89,20 @@ public class ReviewService {
         }
     }
 
+    public ResponseEntity deleteReviewById(int reviewId){
+        try {
+            Review review = reviewRepository.findById(reviewId).orElse(null);
+            if (review != null) {
+                reviewRepository.delete(review);
+                return ResponseEntity.ok("Review deleted");
+            } else {
+                return new ResponseEntity<String>("Review not found", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error deleting Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     public boolean validateReview(Review review) {
         Set<ConstraintViolation<Review>> violations = validator.validate(review);
         if (!violations.isEmpty()) {
