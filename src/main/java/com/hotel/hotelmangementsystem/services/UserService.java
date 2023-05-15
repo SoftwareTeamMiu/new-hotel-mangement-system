@@ -13,6 +13,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    JwtService jwtService;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -27,5 +30,11 @@ public class UserService {
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public User getUserByToken(String token){
+        String Userid = jwtService.extractUUID(token);
+        User user = this.getUserById(Userid);
+        return user;
     }
 }

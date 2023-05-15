@@ -16,9 +16,9 @@ public class Review {
     @ManyToOne(targetEntity = User.class, optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
-    @NotBlank(message = "review_title title is required")
+    @NotBlank(message = "review_title is required")
     private String review_title;
-    @NotBlank(message = "review_description title is required")
+    @NotBlank(message = "review_description is required")
     private String review_description;
 
     public Review() {
@@ -58,5 +58,4 @@ public class Review {
         this.review_description = review_description;
     }
 
-    
 }
