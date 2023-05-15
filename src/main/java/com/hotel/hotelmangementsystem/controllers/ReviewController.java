@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.hotelmangementsystem.models.Review;
@@ -41,7 +44,27 @@ public class ReviewController {
         try {
             return reviewService.getAllReviews();
         } catch (Exception e) {
-            return new ResponseEntity<String>("Error Creating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Error getting reviews: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{reviewId}")
+    public ResponseEntity getReviewById(@PathVariable int reviewId){
+        try {
+            return reviewService.getReviewById(reviewId);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error getting review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @PutMapping("/{reviewId}")
+    public ResponseEntity updateReview(@PathVariable int reviewId, HttpServletRequest request, @RequestBody Map<String, Object> request_body){
+        try {
+            String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
+            return reviewService.updateReviewById(request_body, token, reviewId);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error Updating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

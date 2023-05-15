@@ -47,11 +47,45 @@ public class ReviewService {
         }
     }
 
-    public ResponseEntity getAllReviews(){
+    public ResponseEntity getAllReviews() {
         try {
             return new ResponseEntity<>(reviewRepository.findAll(), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<String>("Error Creating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Error getting Reviews: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity getReviewById(int reviewId) {
+        try {
+            Review review = reviewRepository.findById(reviewId).orElse(null);
+            if (review != null) {
+                return ResponseEntity.ok(review);
+            } else {
+                return new ResponseEntity<String>("Review not found", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error getting Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity updateReviewById(Map<String, Object> body, String token, int reviewId) {
+        try {
+            Review review = reviewRepository.findById(reviewId).orElse(null);
+            if (review != null) {
+                review.setUser(userService.getUserByToken(token));
+                if (body.containsKey("review_title")) {
+                    review.setReview_title((String) body.get("review_title"));
+                }
+                if (body.containsKey("review_description")) {
+                    review.setReview_description((String) body.get("review_description"));
+                }
+                reviewRepository.save(review);
+                return new ResponseEntity<>("Review Updated", HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<String>("Review not found", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Error Updating Review: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
