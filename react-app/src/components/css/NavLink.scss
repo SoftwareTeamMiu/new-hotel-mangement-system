@@ -1,0 +1,39 @@
+.NavLink{
+  /* Dimensions */
+  width: 225px;
+  height: 20px;
+  padding: 0px 0px 0px 15px;
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  /* Properties */
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .Text{
+    /* Dimensions */
+    width: 79px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: center;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(158.0, 158.0, 158.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+}

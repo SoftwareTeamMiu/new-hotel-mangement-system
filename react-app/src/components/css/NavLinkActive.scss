@@ -1,0 +1,41 @@
+.NavLinkActive{
+  /* Dimensions */
+  width: 166px;
+  height: 45px;
+  padding: 0px 0px 11px 15px;
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 20px;
+  /* Properties */
+  background: rgba(58.0, 111.0, 248.0, 1.0);
+  border-radius: 20px 20px 20px 20px;
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .PageName{
+    /* Dimensions */
+    width: 80px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: center;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 600;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+}
