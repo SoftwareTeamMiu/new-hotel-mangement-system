@@ -1,0 +1,111 @@
+.Sidebar{
+  /* Dimensions */
+  width: 225px;
+  height: 1024px;
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* Properties */
+  background: rgba(27.0, 32.0, 40.0, 1.0);
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .Logo{
+    /* Dimensions */
+    width: 100%;
+    height: 150px;
+    padding: 6px 16px 6px 16px;
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    /* Properties */
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+    .HMS{
+      /* Dimensions */
+      width: 167px;
+      height: 108px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: center;
+      letter-spacing: 0.05em;
+      /* Styling */
+      font-family: 'Istok Web';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 75px;
+      /* Properties */
+      color: rgba(255.0, 255.0, 255.0, 1.0);
+    
+    }
+  }
+
+  .Navigation{
+    /* Dimensions */
+    width: 100%;
+    height: auto;
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    /* Properties */
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+    .Upper{
+      /* Dimensions */
+      width: 100%;
+      height: auto;
+      /* Layout */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      /* Properties */
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    .Lower{
+      /* Dimensions */
+      width: 100%;
+      height: auto;
+      /* Layout */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 25px;
+      /* Properties */
+    
+    }
+  }
+}

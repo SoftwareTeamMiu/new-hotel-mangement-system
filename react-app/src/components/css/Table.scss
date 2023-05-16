@@ -1,0 +1,219 @@
+.Table{
+  /* Dimensions */
+  width: 1200px;
+  height: 182px;
+  padding: 25px 24px 25px 24px;
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  /* Properties */
+  background: rgba(27.0, 32.0, 40.0, 1.0);
+  border-radius: 15px 15px 15px 15px;
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .Heading{
+    /* Dimensions */
+    width: 78px;
+    height: 32px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: center;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 600;
+    text-transform: none;
+    font-size: 21px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .TableHead{
+    /* Dimensions */
+    width: 100%;
+    height: auto;
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /* Properties */
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+    .Column1{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column2{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column3{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column4{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column5{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column6{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column7{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column8{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+
+    .Column9{
+      /* Dimensions */
+      width: 120px;
+      height: 18px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 400;
+      text-transform: none;
+      font-size: 12px;
+      /* Properties */
+      color: rgba(158.0, 158.0, 158.0, 1.0);
+    
+    }
+  }
+}
