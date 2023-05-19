@@ -8,7 +8,7 @@ const InputSectionMd = ({label}) => {
           {label}
         </div>
       </div>
-      <div class="Bar"></div>
+      <input class="Bar"></input>
     </div>
   )
 }

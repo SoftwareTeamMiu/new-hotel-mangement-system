@@ -14,3 +14,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input {
+  padding: 0;
+  border: none;
+  background: none;
+  /* Add other desired style modifications */
+}
+
