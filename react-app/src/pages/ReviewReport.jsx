@@ -7,6 +7,45 @@ import Table from '../components/Table';
 import './css/ReviewReport.scss'
 
 const ReviewReport = () => {
+
+  const data = [
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    },
+    {
+      name: 'ahmed',
+      age: 28,
+      gender: 'male'
+    }
+  ]
+
   return (
     <div class="ReviewReport">
       <Sidebar />
@@ -21,7 +60,7 @@ const ReviewReport = () => {
           </div>
           <Btn text="Submit"/>
         </div>
-        <Table column9=" " column8=" " column7=" " column6=" " column5=" " column4="Description" column3="Title" column2="Customer" column1="Id" header="Reviews"/>
+        <Table dataArr={data} column9=" " column8=" " column7=" " column6=" " column5=" " column4="Description" column3="Title" column2="Customer" column1="Id" header="Reviews"/>
       </div>
     </div>
   )

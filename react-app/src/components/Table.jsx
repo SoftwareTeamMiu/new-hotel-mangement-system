@@ -1,6 +1,30 @@
 import './css/Table.scss'
+import TableRow from './TableRow' 
 
-const Table = ({header,column1,column2,column3,column4,column5,column6,column7,column8,column9}) => {
+const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,column7,column8,column9}) => {
+  
+  let dataItems = []
+
+  if(dataArr != null) {
+    dataArr.forEach(dataObj => {
+      const keysArr = Object.keys(dataObj)
+      const valuesArr = keysArr.map((key) => dataObj[key])
+      let propsObj = {}
+    
+      for (let i = 1; i <= valuesArr.length; i++) {
+        propsObj[`value${i}`] = valuesArr[i-1]
+      }
+
+      const dataRow = (
+        <TableRow {...propsObj} />
+      )
+
+      dataItems.push(dataRow)
+    });
+  }
+
+  
+
   return (
     <div class="Table">
       <div class="Heading">
@@ -35,6 +59,7 @@ const Table = ({header,column1,column2,column3,column4,column5,column6,column7,c
           {column9}
         </div>
       </div>
+      {dataItems.map((row) => row)}
     </div>
   )
 }
