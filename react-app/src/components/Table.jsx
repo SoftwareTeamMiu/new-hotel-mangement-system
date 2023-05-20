@@ -23,8 +23,6 @@ const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,c
     });
   }
 
-  
-
   return (
     <div class="Table">
       <div class="Heading">

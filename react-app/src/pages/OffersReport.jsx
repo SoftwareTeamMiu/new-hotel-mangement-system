@@ -5,17 +5,39 @@ import InputSectionSm from '../components/InputSectionSm';
 import Btn from '../components/Btn';
 import Table from '../components/Table';
 import './css/OffersReport.scss';
-import getAllOffers from '../services/OfferService';
+import { getAllOffers, createOffer } from '../services/OfferService';
 import OfferModel from '../models/OfferModel';
 
 const OffersReport = () => {
-  
+  const [formDataObj, setFormDataObj] = useState({});
+  const [latestId, setLatestId] = useState(0);
+
+  const expirationDateInputChange = (value) =>
+    setFormDataObj({ ...formDataObj, ExpirationDate: String(value) });
+  const percentageInputChange = (value) =>
+    setFormDataObj({ ...formDataObj, percentage: Number(value) });
+
+  const onSubmit = () => {
+    console.log(formDataObj);
+    createOffer(formDataObj).then(() => {
+      window.location.reload(); // Refresh the page after creating an offer
+    });
+  };
+
   const [data, setdata] = useState([]);
 
   useEffect(() => {
     getAllOffers().then((response) => {
-      console.log(response[0]);
-      setdata(response.map((obj) => new OfferModel(obj.id, obj.percentage, obj.expirationDate)));
+      if (response.length > 0) {
+        const lastId = response[response.length - 1].id;
+        setLatestId(lastId + 1);
+      } else {
+        setLatestId(1);
+      }
+      
+      setdata(
+        response.map((obj) => new OfferModel(obj.id, obj.percentage, obj.expirationDate))
+      );
     });
   }, []);
 
@@ -28,11 +50,11 @@ const OffersReport = () => {
         <MainHeader username="Admin" headTitle="Offers" />
         <div className="Form">
           <div className="Row">
-            <InputSectionSm label="Id" />
-            <InputSectionSm label="Percentage" />
-            <InputSectionSm label="Expiration Date" />
+            <InputSectionSm label="Id" disabled={true} defaultValue={latestId} />
+            <InputSectionSm onInputChange={percentageInputChange} label="Percentage" />
+            <InputSectionSm onInputChange={expirationDateInputChange} label="Expiration Date" />
           </div>
-          <Btn text="Submit" />
+          <Btn onClick={onSubmit} text="Submit" />
         </div>
         <Table
           dataArr={data}

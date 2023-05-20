@@ -5,4 +5,12 @@ export default class OfferModel
         this.percentage = percentage;
         this.expirationDate =expirationDate;
      }
+
+     static dataConstructor = (dataObj) => {
+        let id = dataObj.id
+        let percentage = dataObj.percentage
+        let expirationDate = dataObj.expirationDate
+        
+        return new OfferModel(id,percentage,expirationDate)
+      }
 }

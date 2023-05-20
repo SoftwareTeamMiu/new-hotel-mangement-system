@@ -1,13 +1,16 @@
 import './css/Btn.scss'
 
-const Btn = ({text}) => {
+ const Btn = ({text,onClick}) => {
+  const handleOnClick = (event) => onClick()
+
   return (
-    <div class="Btn">
+    <div class="Btn"
+      onClick={handleOnClick}
+    >
       <div class="Text">
         {text}
       </div>
-    </div>
-  )
+      </div>
+    )
 }
-
-export default Btn;
+  export default Btn;
