@@ -1,10 +1,11 @@
 import ReviewReport from './pages/ReviewReport'
 import OffersReport from './pages/OffersReport'
+import RoomReport from './pages/RoomReport'
 
 function App() {
   return (
     <>
-      <OffersReport />
+      <RoomReport />
     </>
   );
 }

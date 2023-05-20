@@ -21,9 +21,7 @@ const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,c
 
       dataItems.push(dataRow)
     });
-  }
-
-  
+  }  
 
   return (
     <div class="Table">
