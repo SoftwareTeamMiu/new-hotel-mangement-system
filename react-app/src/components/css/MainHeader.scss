@@ -1,0 +1,90 @@
+.MainHeader{
+  /* Dimensions */
+  width: 1019px;
+  height: 60px;
+  padding: 0px 31px 0px 31px;
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 247px;
+  /* Properties */
+  background: rgba(49.0, 53.0, 63.0, 1.0);
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .TitleSection{
+    /* Dimensions */
+    width: 100%;
+    height: 60px;
+    padding: 10px 10px 10px 10px;
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    /* Properties */
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+    .HeadTitle{
+      /* Dimensions */
+      width: 155px;
+      height: 48px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: center;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 600;
+      text-transform: none;
+      font-size: 32px;
+      /* Properties */
+      color: rgba(255.0, 255.0, 255.0, 1.0);
+    
+    }
+  }
+
+  .Account{
+    /* Dimensions */
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px 10px 10px;
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    /* Properties */
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+    .Username{
+      /* Dimensions */
+      width: 105px;
+      height: 30px;
+      /* Layout */
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      /* Styling */
+      font-family: 'Poppins';
+      font-weight: 500;
+      text-transform: none;
+      font-size: 20px;
+      /* Properties */
+      color: rgba(255.0, 255.0, 255.0, 1.0);
+    
+    }
+  }
+}
