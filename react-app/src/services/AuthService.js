@@ -23,3 +23,21 @@ export const register = async (RegisterModel) => {
     return error.response.data;
   }
 };
+
+export const login = async (LoginModel) => {
+  try {
+    var data = {
+      email: LoginModel.email,
+      password: LoginModel.password,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    let response = await axios.post(`${baseUrl}/login`, data, { headers });
+    localStorage.setItem("token", response.data.token);
+    return "Loing Successfully";
+  } catch (error) {
+    console.log("Error from try catch:", error);
+    return error.response.data;
+  }
+};

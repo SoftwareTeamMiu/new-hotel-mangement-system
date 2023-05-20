@@ -1,12 +1,11 @@
 // import ReviewReport from "./pages/ReviewReport";
 // import OffersReport from "./pages/OffersReport";
-import RegisterPage from "./pages/auth/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
 
 function App() {
   return (
     <>
-      {/* <OffersReport /> */}
-      <RegisterPage />
+      <LoginPage />
     </>
   );
 }
