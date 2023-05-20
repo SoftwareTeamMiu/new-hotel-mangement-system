@@ -5,26 +5,21 @@ import InputSectionSm from '../components/InputSectionSm';
 import Btn from '../components/Btn';
 import Table from '../components/Table';
 import './css/OffersReport.scss';
-import CreateOffer from '../services/OfferService';
-
+import getAllOffers from '../services/OfferService';
 import OfferModel from '../models/OfferModel';
-const OffersReport = () => {
-  const [data, setdata] = useState(); 
-  
-  useEffect(()=>{
-    CreateOffer().then((response)=>{
-       console.log(response[0])
-       setdata(response.map((obj)=>{
-        return new OfferModel(
-          obj.id,
-          obj.percentage,
-          obj.expirationDate
-        )
-       }));
-    })
- },[])  
 
- console.log(data);
+const OffersReport = () => {
+  
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    getAllOffers().then((response) => {
+      console.log(response[0]);
+      setdata(response.map((obj) => new OfferModel(obj.id, obj.percentage, obj.expirationDate)));
+    });
+  }, []);
+
+  console.log(data);
 
   return (
     <div className="OfferReport">
@@ -37,7 +32,7 @@ const OffersReport = () => {
             <InputSectionSm label="Percentage" />
             <InputSectionSm label="Expiration Date" />
           </div>
-          <Btn onClick={CreateOffer} text="Submit" />
+          <Btn text="Submit" />
         </div>
         <Table
           dataArr={data}
@@ -51,9 +46,7 @@ const OffersReport = () => {
           column2="Percentage"
           column1="Id"
           header="Offers"
-        >
-        
-        </Table>
+        />
       </div>
     </div>
   );
