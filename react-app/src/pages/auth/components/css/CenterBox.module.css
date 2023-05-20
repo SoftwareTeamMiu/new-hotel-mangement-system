@@ -1,0 +1,11 @@
+.center_box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1100px;
+  height: 415px;
+  background-color: rgba(75.5, 81.6, 96.7, 1);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
