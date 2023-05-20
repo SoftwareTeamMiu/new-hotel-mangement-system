@@ -37,4 +37,14 @@ public class UserService {
         User user = this.getUserById(Userid);
         return user;
     }
+
+    public String extractConstraintName(Exception e) {
+        String message = e.getMessage();
+        int startIndex = message.indexOf("constraint [") + 12;
+        int endIndex = message.indexOf("]", startIndex);
+        if (startIndex != -1 && endIndex != -1) {
+            return message.substring(startIndex, endIndex);
+        }
+        return null;
+    }
 }
