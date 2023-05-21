@@ -61,7 +61,10 @@ function UserViewRooms() {
         {loading === true ? <div>Loading...</div> : null}
         {loading === false
           ? rooms.map((room) => {
-              return <RoomCard key={room.id} room={room} />;
+              if (room.roomStatus.id === 1) {
+                return <RoomCard key={room.id} room={room} />;
+              }
+              return null;
             })
           : null}
       </div>
