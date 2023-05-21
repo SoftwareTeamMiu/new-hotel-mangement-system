@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./css/MessageModal.css";
 
-
 const MessageModal = (props) => {
   const closeOnEsc = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
@@ -28,9 +27,7 @@ const MessageModal = (props) => {
             {/* <div className="modal-body">{props.error_message}</div> */}
             <div className="modal-footer">
               <button
-                style={{
-                  marginBottom: "30px",
-                }}
+                className="submit_btn"
                 onClick={props.close}
               >
                 Close

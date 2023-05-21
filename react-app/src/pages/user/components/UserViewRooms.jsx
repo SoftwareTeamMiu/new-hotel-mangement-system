@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RoomCard from "./RoomCard";
+import MessageModal from "../../../components/MessageModal";
+import { getAllRooms } from "../../../services/UserService";
 
 function UserViewRooms() {
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  function handleClose() {
+    setOpen(false);
+  }
+  function handleOpen() {
+    setOpen(true);
+  }
+  useEffect(() => {
+    document.title = "View Rooms";
+    const fetchRooms = async () => {
+      await getAllRooms()
+        .then((res) => {
+          console.log(res.data);
+          setRooms(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setErrorMessage("Error with fetching rooms");
+          handleOpen();
+        });
+    };
+    fetchRooms();
+  }, []);
   return (
     <div
       style={{
@@ -25,15 +53,17 @@ function UserViewRooms() {
           justifyItems: "center",
         }}
       >
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
+        <MessageModal
+          open={open}
+          close={handleClose}
+          error_message={errorMessage}
+        />
+        {loading === true ? <div>Loading...</div> : null}
+        {loading === false
+          ? rooms.map((room) => {
+              return <RoomCard key={room.id} room={room} />;
+            })
+          : null}
       </div>
     </div>
   );
