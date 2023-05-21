@@ -65,7 +65,7 @@ public class ReservationController {
             int reservationstatusID = (Integer) request_body.get("reservation_status_id");
             reservationStatus = reservationStatusService.getReservationStatusById(reservationstatusID);
             //
-            int paymentmethodID = (Integer) request_body.get("payment_method__id");
+            int paymentmethodID = (Integer) request_body.get("payment_method_id");
             paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
 
             List<Integer> room_ids = (List<Integer>) request_body.get("rooms");
@@ -179,7 +179,7 @@ public class ReservationController {
                 }
                 if (request_body.get("payment_methods_id") != null) {
                     PaymentMethods paymentMethods = new PaymentMethods();
-                    int paymentmethodID = (Integer) request_body.get("payment_method__id");
+                    int paymentmethodID = (Integer) request_body.get("payment_method_id");
                     paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
                     reservation.setPaymentMethods(paymentMethods);
                 }
