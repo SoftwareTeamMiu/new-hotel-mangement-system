@@ -1,0 +1,20 @@
+.date_picker_container {
+  position: relative;
+}
+
+.date_picker {
+  appearance: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.date_picker:focus {
+  outline: none;
+  border-color: #888;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}

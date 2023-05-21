@@ -15,6 +15,8 @@ function RoomCard(props) {
     props.onAcion(props.room.id, props.flag);
   };
 
+  
+
   return (
     <div className={styles.room_card}>
       <div>Room No: {props.room.id}</div>
@@ -55,6 +57,7 @@ function RoomCard(props) {
           </button>
         )}
       </div>
+      
     </div>
   );
 }
