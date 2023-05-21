@@ -15,7 +15,7 @@
   font-size: 50px;
 }
 
-input {
+.input {
   background: #ffffff;
   border-radius: 30px;
   border: 1px solid #000000;
@@ -30,9 +30,12 @@ input {
   color: white;
   font-weight: bold;
   text-align: left;
+  flex: 1;
+  padding: 10px;
+  font-size: 50px;
 }
 
-button {
+.submit_btn {
   border-radius: 36px;
   width: 280px;
   height: 80px;
@@ -42,6 +45,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.submit_btn:hover {
   background-color: #cdc7c7;
 }

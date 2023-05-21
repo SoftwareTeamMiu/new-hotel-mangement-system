@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./css/MessageModal.css";
 
+
 const MessageModal = (props) => {
   const closeOnEsc = (e) => {
     if ((e.charCode || e.keyCode) === 27) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/RegistrationForm.css";
+import styles from "./css/RegistrationForm.module.css";
 import { RegisterModel } from "../../../models/AuthModel";
 import MessageModal from "../../../components/MessageModal";
 function RegistrationForm(props) {
@@ -28,12 +28,13 @@ function RegistrationForm(props) {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <form>
-        <div className="row">
-          <div className="column label1">Name</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Name</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -41,10 +42,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column label1">Email</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Email</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -52,10 +54,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column label1">Password</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Password</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -63,9 +66,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column">
-            <button onClick={handleSubmit}>Register</button>
+        <div className={styles.row}>
+          <div className={styles.column}>
+            <button className={styles.submit_btn} onClick={handleSubmit}>
+              Register
+            </button>
             <MessageModal
               open={open}
               close={handleClose}
