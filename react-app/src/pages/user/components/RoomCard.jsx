@@ -8,6 +8,13 @@ function RoomCard(props) {
   } else {
     hasOffer = false;
   }
+
+  const handleRoom = () => {
+    // console.log(props.room.id);
+    // console.log(props.flag);
+    props.onAcion(props.room.id, props.flag);
+  };
+
   return (
     <div className={styles.room_card}>
       <div>Room No: {props.room.id}</div>
@@ -29,6 +36,25 @@ function RoomCard(props) {
       ) : (
         <div>Price: {props.room.price}</div>
       )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row-reverse",
+        }}
+      >
+        {props.flag === "0" ? (
+          <button onClick={handleRoom} className={styles.add_to_reservaion_btn}>
+            Add to reservation
+          </button>
+        ) : (
+          <button
+            onClick={handleRoom}
+            className={styles.remove_to_reservaion_btn}
+          >
+            remove to reservation
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -7,26 +7,53 @@ function UserViewRooms() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [reservationRooms, setReservationRooms] = useState([]);
   function handleClose() {
     setOpen(false);
   }
   function handleOpen() {
     setOpen(true);
   }
+
+  const handleAddToReservation = (roomId, flag) => {
+    if (flag === "0") {
+      setReservationRooms([...reservationRooms, roomId]);
+      localStorage.setItem(
+        "reservationRooms",
+        JSON.stringify([...reservationRooms, roomId])
+      );
+    } else {
+      setReservationRooms(reservationRooms.filter((room) => room !== roomId));
+      localStorage.setItem(
+        "reservationRooms",
+        JSON.stringify(reservationRooms.filter((room) => room !== roomId))
+      );
+    }
+    console.log(localStorage);
+  };
   useEffect(() => {
     document.title = "View Rooms";
     const fetchRooms = async () => {
       await getAllRooms()
         .then((res) => {
-          console.log(res.data);
           setRooms(res.data);
           setLoading(false);
         })
         .catch((err) => {
           setErrorMessage("Error with fetching rooms");
+          setLoading(false);
           handleOpen();
         });
+      if (localStorage.getItem("reservationRooms") === null) {
+        localStorage.setItem("reservationRooms", JSON.stringify([]));
+      } else {
+        setReservationRooms(
+          JSON.parse(localStorage.getItem("reservationRooms"))
+        );
+      }
+
+      console.log(localStorage);
     };
     fetchRooms();
   }, []);
@@ -62,7 +89,25 @@ function UserViewRooms() {
         {loading === false
           ? rooms.map((room) => {
               if (room.roomStatus.id === 1) {
-                return <RoomCard key={room.id} room={room} />;
+                if (reservationRooms.includes(room.id)) {
+                  return (
+                    <RoomCard
+                      key={room.id}
+                      room={room}
+                      flag="1"
+                      onAcion={handleAddToReservation}
+                    />
+                  );
+                } else {
+                  return (
+                    <RoomCard
+                      key={room.id}
+                      room={room}
+                      flag="0"
+                      onAcion={handleAddToReservation}
+                    />
+                  );
+                }
               }
               return null;
             })
