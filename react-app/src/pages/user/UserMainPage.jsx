@@ -1,5 +1,6 @@
 import UserHeader from "../../components/UserHeader";
 import UserCheckout from "./components/UserCheckout";
+import UserReservations from "./components/UserReservations";
 import UserViewRooms from "./components/UserViewRooms";
 
 function UserMainPage() {
@@ -8,6 +9,7 @@ function UserMainPage() {
       <UserHeader />
       <UserViewRooms />
       {/* <UserCheckout /> */}
+      {/* <UserReservations /> */}
     </>
   );
 }

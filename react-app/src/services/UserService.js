@@ -56,3 +56,34 @@ export const makeReservation = async (reservation) => {
     console.log("Error from try catch:", error);
   }
 };
+
+export const getReservations = async () => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    let response = await axios.get(`${baseUrl}/reservation/user`, {
+      headers,
+    });
+    return response;
+  } catch (error) {
+    console.log("Error from try catch:", error);
+  }
+};
+
+export const deleteReservation = async (id) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    let response = await axios.delete(`${baseUrl}/reservation/${id}`, {
+      headers,
+    });
+    return response;
+  } catch (error) {
+    console.log("Error from try catch:", error);
+  }
+};
