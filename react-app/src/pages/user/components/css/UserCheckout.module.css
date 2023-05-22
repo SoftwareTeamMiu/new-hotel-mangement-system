@@ -21,7 +21,7 @@ td {
   text-align: center;
 }
 
-.btn_remove {
+.btn_delete {
   color: white;
   border: none;
   border-radius: 5px;
@@ -32,7 +32,7 @@ td {
   font-weight: bold;
 }
 
-.btn_remove:hover {
+.btn_delete:hover {
   background-color: white;
   color: black;
   font-size: x-large;
@@ -44,7 +44,6 @@ td {
 }
 
 .btn_sbmt {
-  
   color: white;
   border: none;
   border-radius: 5px;
@@ -57,4 +56,6 @@ td {
 
 .btn_sbmt:hover {
   cursor: pointer;
+  font-size: x-large;
+  font-weight: bold;
 }
