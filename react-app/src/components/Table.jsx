@@ -1,7 +1,8 @@
 import './css/Table.scss'
 import TableRow from './TableRow' 
 
-const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,column7,column8,column9}) => {
+const Table = ({onClick,dataArr,header,column1,column2,column3,column4,column5,column6,column7,column8,column9}) => {
+  const handleOnClick = (event,value1) => onClick(event,value1)
   
   let dataItems = []
 
@@ -16,7 +17,7 @@ const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,c
       }
 
       const dataRow = (
-        <TableRow {...propsObj} />
+        <TableRow {...propsObj} onClick={handleOnClick} />
       )
 
       dataItems.push(dataRow)

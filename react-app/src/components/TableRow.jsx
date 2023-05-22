@@ -1,8 +1,12 @@
 import './css/TableRow.scss'
 
-const TableRow = ({value1,value2,value3,value4,value5,value6,value7,value8,value9}) => {
+const TableRow = ({onClick,value1,value2,value3,value4,value5,value6,value7,value8,value9}) => {
+  const handleOnClick = (event) => onClick(event,value1)
+  
   return(
-    <div class="TableRow">
+    <div class="TableRow"
+      onClick={handleOnClick}
+    >
       <div class="Value1">
         {value1}
       </div>
