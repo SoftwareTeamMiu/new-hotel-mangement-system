@@ -48,7 +48,7 @@ public class WebSecurityConfig {
         configuration.addAllowedHeader("*"); // Allow all headers
         configuration.setAllowCredentials(true); // Allow sending credentials (e.g., cookies)
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration); // Apply the configuration to specific paths
+        source.registerCorsConfiguration("/**", configuration); // Apply the configuration to specific paths
         return source;
     }
 }
