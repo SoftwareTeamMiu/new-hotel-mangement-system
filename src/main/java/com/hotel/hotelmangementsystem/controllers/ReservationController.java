@@ -198,4 +198,17 @@ public class ReservationController {
             return ResponseEntity.badRequest().body("Error updating Reservation: " + e.getMessage());
         }
     }
+
+    @GetMapping("/user")
+    public ResponseEntity getAllReservationsByUser(HttpServletRequest request) {
+        try {
+            String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
+            String Userid = jwtService.extractUUID(token);
+            User user = userService.getUserById(Userid);
+            List<Reservation> reservations = reservationService.getReservationByUserID(user.getId());
+            return ResponseEntity.ok(reservations);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error getting reservations: " + e.getMessage());
+        }
+    }
 }
