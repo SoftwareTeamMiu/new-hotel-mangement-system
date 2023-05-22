@@ -38,7 +38,7 @@ public class ReservationController {
 
     @Autowired
     JwtService jwtService;
-    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @PostMapping("")
     public ResponseEntity createReservation(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
@@ -62,11 +62,11 @@ public class ReservationController {
             String Userid = jwtService.extractUUID(token);
             user = userService.getUserById(Userid);
             //
-            int reservationstatusID = (Integer) request_body.get("reservation_status_id");
-            reservationStatus = reservationStatusService.getReservationStatusById(reservationstatusID);
+            String reservationstatusID = (String) request_body.get("reservation_status_id");
+            reservationStatus = reservationStatusService.getReservationStatusById(Integer.parseInt(reservationstatusID));
             //
-            int paymentmethodID = (Integer) request_body.get("payment_method_id");
-            paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
+            String paymentmethodID = (String) request_body.get("payment_method_id");
+            paymentMethods = paymentMethodsService.getPaymentMethodByID(Integer.parseInt(paymentmethodID));
 
             List<Integer> room_ids = (List<Integer>) request_body.get("rooms");
             for (int i = 0; i < room_ids.size(); i++) {
