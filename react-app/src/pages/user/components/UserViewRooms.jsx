@@ -65,7 +65,7 @@ function UserViewRooms() {
     >
       <div
         style={{
-          backgroundColor: "yellow",
+          // backgroundColor: "yellow",
           padding: "20px",
           marginBottom: "20px",
         }}

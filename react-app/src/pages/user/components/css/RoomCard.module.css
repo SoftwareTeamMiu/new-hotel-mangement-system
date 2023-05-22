@@ -15,7 +15,6 @@
 }
 
 .room_card:hover {
-  cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -27,11 +26,10 @@
 }
 
 .add_to_reservaion_btn {
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 10px;
   border-radius: 1rem;
   font-size: 1.5rem;
-  /* font-weight: 500; */
   border: none;
   cursor: pointer;
 }

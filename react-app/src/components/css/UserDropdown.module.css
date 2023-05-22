@@ -1,0 +1,50 @@
+/* UserDropdown.module.css */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown_toggle {
+  background-color: #f1f1f1;  
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown_menu {
+  position: absolute;
+  top: 100%;
+  right: 0; /* Updated */
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown_menu li {
+  padding: 10px;
+}
+
+.dropdown_menu li:hover {
+  background-color: #ddd;
+}
+
+.dropdown_menu li:first-child {
+  border-top: none;
+}
+
+.dropdown_menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown_link {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown_link:hover {
+  color: #000;
+}

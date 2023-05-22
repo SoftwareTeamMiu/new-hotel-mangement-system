@@ -6,8 +6,8 @@ function UserMainPage() {
   return (
     <>
       <UserHeader />
-      {/* <UserViewRooms /> */}
-      <UserCheckout />
+      <UserViewRooms />
+      {/* <UserCheckout /> */}
     </>
   );
 }
