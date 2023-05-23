@@ -38,7 +38,7 @@ public class ReservationController {
 
     @Autowired
     JwtService jwtService;
-    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @PostMapping("")
     public ResponseEntity createReservation(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
@@ -62,11 +62,11 @@ public class ReservationController {
             String Userid = jwtService.extractUUID(token);
             user = userService.getUserById(Userid);
             //
-            int reservationstatusID = (Integer) request_body.get("reservation_status_id");
-            reservationStatus = reservationStatusService.getReservationStatusById(reservationstatusID);
+            String reservationstatusID = (String) request_body.get("reservation_status_id");
+            reservationStatus = reservationStatusService.getReservationStatusById(Integer.parseInt(reservationstatusID));
             //
-            int paymentmethodID = (Integer) request_body.get("payment_method__id");
-            paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
+            String paymentmethodID = (String) request_body.get("payment_method_id");
+            paymentMethods = paymentMethodsService.getPaymentMethodByID(Integer.parseInt(paymentmethodID));
 
             List<Integer> room_ids = (List<Integer>) request_body.get("rooms");
             for (int i = 0; i < room_ids.size(); i++) {
@@ -179,7 +179,7 @@ public class ReservationController {
                 }
                 if (request_body.get("payment_methods_id") != null) {
                     PaymentMethods paymentMethods = new PaymentMethods();
-                    int paymentmethodID = (Integer) request_body.get("payment_method__id");
+                    int paymentmethodID = (Integer) request_body.get("payment_method_id");
                     paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
                     reservation.setPaymentMethods(paymentMethods);
                 }
@@ -196,6 +196,19 @@ public class ReservationController {
             }
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error updating Reservation: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity getAllReservationsByUser(HttpServletRequest request) {
+        try {
+            String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
+            String Userid = jwtService.extractUUID(token);
+            User user = userService.getUserById(Userid);
+            List<Reservation> reservations = reservationService.getReservationByUserID(user.getId());
+            return ResponseEntity.ok(reservations);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error getting reservations: " + e.getMessage());
         }
     }
 }

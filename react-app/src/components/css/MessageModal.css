@@ -31,3 +31,18 @@
 .modal-body {
   font-size: 20px;
 }
+
+.submit_btn {
+  margin-bottom: 30px;
+  border-radius: 36px;
+  width: 280px;
+  height: 80px;
+  font-weight: bold;
+  font-size: 55px;
+  line-height: 77px;
+  cursor: pointer;
+}
+
+.submit_btn:hover {
+  background-color: #cdc7c7;
+}

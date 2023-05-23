@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import "./css/RegistrationForm.css";
+import styles from "./css/RegistrationForm.module.css";
 import { RegisterModel } from "../../../models/AuthModel";
 import MessageModal from "../../../components/MessageModal";
+import { useNavigate } from "react-router-dom";
 function RegistrationForm(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -28,12 +30,13 @@ function RegistrationForm(props) {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <form>
-        <div className="row">
-          <div className="column label1">Name</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Name</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -41,10 +44,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column label1">Email</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Email</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -52,10 +56,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column label1">Password</div>
-          <div className="column">
+        <div className={styles.row}>
+          <div className={styles.label1}>Password</div>
+          <div className={styles.column}>
             <input
+              className={styles.input}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -63,9 +68,11 @@ function RegistrationForm(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="column">
-            <button onClick={handleSubmit}>Register</button>
+        <div className={styles.row}>
+          <div className={styles.column}>
+            <button className={styles.submit_btn} onClick={handleSubmit}>
+              Register
+            </button>
             <MessageModal
               open={open}
               close={handleClose}
@@ -74,6 +81,28 @@ function RegistrationForm(props) {
           </div>
         </div>
       </form>
+      <div className={styles.row}>
+        <div
+          className={styles.column}
+          style={{
+            fontSize: "15px",
+            marginTop: "10px",
+          }}
+        >
+          <button
+            className={styles.register_btn}
+            style={{
+              width: "30%",
+              padding: "10px",
+            }}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Already have account ?
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

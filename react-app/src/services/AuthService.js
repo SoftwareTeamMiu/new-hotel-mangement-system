@@ -34,8 +34,9 @@ export const login = async (LoginModel) => {
       "Content-Type": "application/json",
     };
     let response = await axios.post(`${baseUrl}/login`, data, { headers });
-    localStorage.setItem("token", response.data.token);
-    return "Loing Successfully";
+    return response;
+    // localStorage.setItem("token", response.data.token);
+    // return "Loing Successfully";
   } catch (error) {
     console.log("Error from try catch:", error);
     return error.response.data;

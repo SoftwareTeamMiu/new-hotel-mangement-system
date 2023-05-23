@@ -91,8 +91,9 @@ public class AuthController {
                 return new ResponseEntity<>("User Not found", HttpStatus.NOT_FOUND);
             }
             String token = this.jwtService.generateToken(user.getId());
-            Map<String, String> res = new HashMap<String, String>();
+            Map<String, Object> res = new HashMap<String, Object>();
             res.put("token", token);
+            res.put("user", user);
 
             return ResponseEntity.ok().body(res);
         } catch (Exception e) {
