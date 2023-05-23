@@ -12,7 +12,7 @@ import java.util.List;
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
-    @GetMapping("/")
+    @GetMapping("")
     public List<Activity> getAllActivities() {
         return activityService.getAllActivities();
     }
@@ -20,7 +20,7 @@ public class ActivityController {
     public Activity getActivityById(@PathVariable Integer id) {
         return activityService.getActivityById(id);
     }
-    @PostMapping("/")
+    @PostMapping("")
     public Activity createActivity(@RequestBody Activity activity) {
         return activityService.createOrUpdateActivity(new Activity(activity.getDurationHrs(), activity.getDate(), activity.getHostName()));
     }
