@@ -23,7 +23,7 @@ public class RoomStatusController {
     @Autowired
     private RoomStatusService roomStatusService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<RoomStatus> getAllRoomStatus() {
         return roomStatusService.getAllRoomStatus();
     }

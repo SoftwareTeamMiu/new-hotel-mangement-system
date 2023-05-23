@@ -22,7 +22,7 @@ public class ReservationStatusController {
     @Autowired
     private ReservationStatusService reservationStatusService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<ReservationStatus> getAllReservationStatus() {
         return reservationStatusService.getAllReservationStatus();
     }

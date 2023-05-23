@@ -15,12 +15,12 @@ public class RoomTypeController {
     @Autowired
     private RoomTypeService roomTypeService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<RoomType> getAllRoomTypes() {
         return roomTypeService.getAllRoomTypes();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public RoomType CreateRoomType(@RequestBody RoomType rt) {
         return roomTypeService.createRoomType(new RoomType(rt.getId(), rt.getSize(), rt.getLocation()));
     }

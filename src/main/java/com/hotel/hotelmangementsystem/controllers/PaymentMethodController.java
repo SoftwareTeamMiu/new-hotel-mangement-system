@@ -16,13 +16,13 @@ public class PaymentMethodController {
     @Autowired
     private PaymentMethodsService paymentMethodsService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<PaymentMethods> getAllPaymentMethods(){return paymentMethodsService.getAllPaymentMethods();}
 
     @GetMapping("/{id}")
     public PaymentMethods getPaymentMethodByID(@PathVariable Integer id){return paymentMethodsService.getPaymentMethodByID(id);}
 
-    @PostMapping("/")
+    @PostMapping("")
     public PaymentMethods createPaymentMethod(@RequestBody PaymentMethods pm){
         return paymentMethodsService.createPaymentMethod(new PaymentMethods(pm.getId(),pm.getMethod_name(),pm.getMethod_description()));
     }
