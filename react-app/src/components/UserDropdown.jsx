@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./css/UserDropdown.module.css";
+import { useNavigate } from "react-router-dom";
 
 function UserDropdown() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = async () => {
+    await localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -26,24 +33,35 @@ function UserDropdown() {
               Home
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link
-              to="/about"
+              to="/myreservations"
               className={styles.dropdown_link}
               onClick={handleToggle}
             >
-              About
+              My Reservations
             </Link>
           </li>
           <li>
             <Link
-              to="/products"
+              to="/checkout"
               className={styles.dropdown_link}
               onClick={handleToggle}
             >
-              Products
+              Checkout
             </Link>
-          </li> */}
+          </li>
+          <li>
+            <Link
+              className={styles.dropdown_link}
+              onClick={() => {
+                handleToggle();
+                handleLogout(); // Call the function when clicked
+              }}
+            >
+              Logout
+            </Link>
+          </li>
         </ul>
       )}
     </div>

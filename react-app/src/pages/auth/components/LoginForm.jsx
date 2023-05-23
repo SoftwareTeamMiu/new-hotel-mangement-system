@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import styles from "./css/RegistrationForm.module.css";
 import { LoginModel } from "../../../models/AuthModel";
 import MessageModal from "../../../components/MessageModal";
+import { useNavigate } from "react-router-dom";
 function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -71,6 +73,18 @@ function LoginForm(props) {
           </div>
         </div>
       </form>
+      <div className={styles.row}>
+        <div className={styles.column}>
+          <button
+            className={styles.register_btn}
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            don't have account ?
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

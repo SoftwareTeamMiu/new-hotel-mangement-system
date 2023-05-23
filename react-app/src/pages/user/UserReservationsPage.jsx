@@ -1,7 +1,5 @@
 import UserHeader from "../../components/UserHeader";
-// import UserCheckout from "./components/UserCheckout";
-// import UserReservations from "./components/UserReservations";
-import UserViewRooms from "./components/UserViewRooms";
+import UserReservations from "./components/UserReservations";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,9 +24,7 @@ function UserMainPage() {
   return (
     <>
       <UserHeader user_name={name} />
-      <UserViewRooms />
-      {/* <UserCheckout /> */}
-      {/* <UserReservations /> */}
+      <UserReservations />
     </>
   );
 }

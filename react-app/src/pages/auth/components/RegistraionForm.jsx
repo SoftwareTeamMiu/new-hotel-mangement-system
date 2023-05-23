@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "./css/RegistrationForm.module.css";
 import { RegisterModel } from "../../../models/AuthModel";
 import MessageModal from "../../../components/MessageModal";
+import { useNavigate } from "react-router-dom";
 function RegistrationForm(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -79,6 +81,28 @@ function RegistrationForm(props) {
           </div>
         </div>
       </form>
+      <div className={styles.row}>
+        <div
+          className={styles.column}
+          style={{
+            fontSize: "15px",
+            marginTop: "10px",
+          }}
+        >
+          <button
+            className={styles.register_btn}
+            style={{
+              width: "30%",
+              padding: "10px",
+            }}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Already have account ?
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

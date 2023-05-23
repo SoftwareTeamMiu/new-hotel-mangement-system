@@ -30,7 +30,7 @@ function UserViewRooms() {
         JSON.stringify(reservationRooms.filter((room) => room !== roomId))
       );
     }
-    console.log(localStorage);
+    // console.log(localStorage);
   };
   useEffect(() => {
     document.title = "View Rooms";
@@ -53,7 +53,7 @@ function UserViewRooms() {
         );
       }
 
-      console.log(localStorage);
+      // console.log(localStorage);
     };
     fetchRooms();
   }, []);
