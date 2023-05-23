@@ -13,7 +13,7 @@ function UserDropdown() {
 
   const handleLogout = async () => {
     await localStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
