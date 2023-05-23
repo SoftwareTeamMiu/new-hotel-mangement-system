@@ -1,12 +1,13 @@
 import './css/Table.scss'
 import TableRow from './TableRow' 
 
-const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,column7,column8,column9}) => {
+const Table = props => { console.log(props);
+  const handleOnClick = (event,value1) => props.onClick(event,value1)
   
   let dataItems = []
 
-  if(dataArr != null) {
-    dataArr.forEach(dataObj => {
+  if(props.dataArr != null) {
+    props.dataArr.forEach(dataObj => {
       const keysArr = Object.keys(dataObj)
       const valuesArr = keysArr.map((key) => dataObj[key])
       let propsObj = {}
@@ -16,47 +17,45 @@ const Table = ({dataArr,header,column1,column2,column3,column4,column5,column6,c
       }
 
       const dataRow = (
-        <TableRow {...propsObj} />
+        <TableRow {...propsObj} onClick={handleOnClick} />
       )
 
       dataItems.push(dataRow)
     });
-  }
-
-  
+  }  
 
   return (
     <div class="Table">
       <div class="Heading">
-        {header}
+        {props.header}
       </div>
       <div class="TableHead">
         <div class="Column1">
-          {column1}
+          {props.columnsObj.column1}
         </div>
         <div class="Column2">
-          {column2}
+          {props.columnsObj.column2}
         </div>
         <div class="Column3">
-          {column3}
+          {props.columnsObj.column3}
         </div>
         <div class="Column4">
-          {column4}
+          {props.columnsObj.column4}
         </div>
         <div class="Column5">
-          {column5}
+          {props.columnsObj.column5}
         </div>
         <div class="Column6">
-          {column6}
+          {props.columnsObj.column6}
         </div>
         <div class="Column7">
-          {column7}
+          {props.columnsObj.column7}
         </div>
         <div class="Column8">
-          {column8}
+          {props.columnsObj.column8}
         </div>
         <div class="Column9">
-          {column9}
+          {props.columnsObj.column9}
         </div>
       </div>
       {dataItems.map((row) => row)}
