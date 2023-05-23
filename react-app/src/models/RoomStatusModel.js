@@ -1,5 +1,5 @@
-export class RoomStatusModel{
-  constructor(id,status) { 
+export default class RoomStatusModel{
+  constructor(id = '',status = '') { 
     this.id = id;
     this.status = status;
   }
