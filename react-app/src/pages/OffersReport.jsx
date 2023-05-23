@@ -11,6 +11,7 @@ import OfferModel from '../models/OfferModel';
 const OffersReport = () => {
   const [formDataObj, setFormDataObj] = useState({});
   const [latestId, setLatestId] = useState(0);
+  const [data, setdata] = useState([]);
 
   const expirationDateInputChange = (value) =>
     setFormDataObj({ ...formDataObj, ExpirationDate: String(value) });
@@ -24,20 +25,17 @@ const OffersReport = () => {
     });
   };
 
-  const [data, setdata] = useState([]);
-
   useEffect(() => {
     getAllOffers().then((response) => {
-      if (response.length > 0) {
+      if (response && response.length > 0) {
         const lastId = response[response.length - 1].id;
         setLatestId(lastId + 1);
+        setdata(
+          response.map((obj) => new OfferModel(obj.id, obj.percentage, obj.expirationDate))
+        );
       } else {
         setLatestId(1);
       }
-      
-      setdata(
-        response.map((obj) => new OfferModel(obj.id, obj.percentage, obj.expirationDate))
-      );
     });
   }, []);
 
@@ -58,12 +56,6 @@ const OffersReport = () => {
         </div>
         <Table
           dataArr={data}
-          column9=" "
-          column8=" "
-          column7=" "
-          column6=" "
-          column5=" "
-          column4=" "
           column3="Expiration Date"
           column2="Percentage"
           column1="Id"

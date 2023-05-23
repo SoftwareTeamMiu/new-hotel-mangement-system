@@ -1,5 +1,5 @@
 // import ReviewReport from "./pages/ReviewReport";
-// import OffersReport from "./pages/OffersReport";
+import OffersReport from "./pages/OffersReport";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import { Routes, Route } from "react-router-dom";
@@ -10,13 +10,15 @@ import UserCheckoutPage from "./pages/user/UserCheckoutPage";
 function App() {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<UserMainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/myreservations" element={<UserReservations />} />
         <Route path="/checkout" element={<UserCheckoutPage />} />
-      </Routes>
+      </Routes> */}
+      <OffersReport />
+
     </>
   );
 }
