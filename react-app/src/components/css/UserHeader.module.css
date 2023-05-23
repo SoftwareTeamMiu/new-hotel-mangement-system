@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background-color: #4c5261;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.dropdown {
+  margin-right: 20px;
+}

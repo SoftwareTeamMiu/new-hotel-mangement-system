@@ -27,9 +27,7 @@ const MessageModal = (props) => {
             {/* <div className="modal-body">{props.error_message}</div> */}
             <div className="modal-footer">
               <button
-                style={{
-                  marginBottom: "30px",
-                }}
+                className="submit_btn"
                 onClick={props.close}
               >
                 Close

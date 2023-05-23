@@ -22,4 +22,6 @@ public class ReservationService {
     public Reservation getReservationByID(int id){return reservationRepository.findById(id).orElse(null);}
 
     public void deleteReservationByID(int id){reservationRepository.deleteById(id);}
+
+    public List<Reservation> getReservationByUserID(String id){return reservationRepository.findByCustomerId(id);}
 }

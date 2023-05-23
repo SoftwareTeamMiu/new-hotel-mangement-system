@@ -1,0 +1,32 @@
+.dropdown_container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown {
+  appearance: none;
+  padding: 10px 10px;
+  padding-right: 30px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #888;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown_container::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  pointer-events: none;
+}
