@@ -37,7 +37,6 @@ public class ReservationService {
 
     public boolean hasOverlappingReservations(List<Room> rooms, Date startDate, Date endDate) {
         for (Room room : rooms) {
-            System.out.println("Checking room " + room.getId());
             List<Reservation> overlappingReservations = reservationRepository.findOverlappingReservations(room,
                     startDate, endDate);
             if (!overlappingReservations.isEmpty()) {
