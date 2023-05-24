@@ -1,6 +1,6 @@
 import './css/Btn.scss'
 
- const Btn = ({text,onClick}) => {
+const Btn = ({text,onClick}) => {
   const handleOnClick = (event) => onClick()
 
   return (

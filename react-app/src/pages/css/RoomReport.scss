@@ -1,0 +1,79 @@
+.RoomModel{
+  /* Dimensions */
+  width: 100%;
+  height: 1024px;
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* Properties */
+  background: rgba(49.0, 53.0, 63.0, 1.0);
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+
+  .Main{
+    /* Dimensions */
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 20px 20px;
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 34px;
+    /* Properties */
+  
+
+    .Form{
+      /* Dimensions */
+      width: 100%;
+      height: auto;
+      padding: 25px 18px 25px 18px;
+      /* Layout */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      /* Properties */
+    
+      .Row{
+        /* Dimensions */
+        width: 100%;
+        height: auto;
+        /* Layout */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        /* Properties */
+      
+
+
+      }
+
+      .Row{
+        /* Dimensions */
+        width: 100%;
+        height: auto;
+        /* Layout */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        /* Properties */
+      
+
+      }
+
+    }
+
+  }
+}

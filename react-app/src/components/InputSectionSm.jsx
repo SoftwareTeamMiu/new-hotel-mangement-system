@@ -12,10 +12,8 @@ const InputSectionSm = ({label,onInputChange,disabled = false,defaultValue}) => 
     const value = event.target.value;
     setInputValue(value);
     // Call the callback function passed from the parent component
-    onInputChange(value);
+    onInputChange(value,label);
   };
-
-
   return (
     <div class="InputSectionSm">
       <div class="LabelLayout">
@@ -31,5 +29,6 @@ const InputSectionSm = ({label,onInputChange,disabled = false,defaultValue}) => 
       ></input>
     </div>
   )
-} 
+}
+
 export default InputSectionSm;

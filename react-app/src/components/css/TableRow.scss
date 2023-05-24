@@ -8,6 +8,14 @@
   justify-content: flex-start;
   align-items: center;
   /* Properties */
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: #4C5261;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 0 10px 15px;
+  }
 
   &,
   & * {
