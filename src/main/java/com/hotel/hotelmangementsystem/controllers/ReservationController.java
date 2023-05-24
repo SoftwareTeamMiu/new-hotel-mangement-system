@@ -97,7 +97,7 @@ public class ReservationController {
                     reservation.getStart_date(),
                     reservation.getEnd_date());
             if (hasOverlappingReservations) {
-                return ResponseEntity.badRequest().body("Some rooms are already booked for the given dates");
+                return ResponseEntity.badRequest().body("there is rooms are already booked for the given dates");
             }
             //
             System.out.println("hasOvverLapping is : " + hasOverlappingReservations);
