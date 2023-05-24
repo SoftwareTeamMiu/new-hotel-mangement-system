@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import styles from "./css/RoomCard.module.css";
 import RoomPage from "./RoomPage";
 import CreateRoomReview from "./CreateReview";
+import GetReviewsPage from "./GetReviewPage";
 
 function RoomCard(props) {
   const [open, setOpen] = useState(false);
   const [createRommBolean, setCreateRommBolean] = useState(false);
+  const [getRommBolean, setGetRommBolean] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleCreateRoomReivew = () => {
     setCreateRommBolean(true);
+  };
+  const handleGetRoomReivew = () => {
+    setGetRommBolean(true);
   };
 
   const handleClose = (e) => {
@@ -20,6 +25,7 @@ function RoomCard(props) {
     }
     setOpen(false);
     setCreateRommBolean(false);
+    setGetRommBolean(false);
   };
 
   useEffect(() => {
@@ -29,7 +35,7 @@ function RoomCard(props) {
       }
     };
 
-    if (open || createRommBolean) {
+    if (open || createRommBolean || getRommBolean) {
       document.addEventListener("keydown", handleKeyPress);
     }
 
@@ -97,6 +103,11 @@ function RoomCard(props) {
           open={createRommBolean}
           close={handleClose}
         />
+        <GetReviewsPage
+          room_reviews={props.room.reviews}
+          open={getRommBolean}
+          close={handleClose}
+        />
         {props.flag === "0" ? (
           <button onClick={handleRoom} className={styles.add_to_reservaion_btn}>
             Add to reservation
@@ -116,7 +127,10 @@ function RoomCard(props) {
           justifyContent: "space-between",
         }}
       >
-        <button className={styles.add_to_reservaion_btn}>
+        <button
+          onClick={handleGetRoomReivew}
+          className={styles.add_to_reservaion_btn}
+        >
           Show Room Reviews
         </button>
         <button
