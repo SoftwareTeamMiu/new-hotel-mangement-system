@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 .content {
   width: 550px;
@@ -16,7 +17,7 @@
   border-radius: 20px;
   margin: auto;
   text-align: center;
-  height: 600px;
+  height: 200px;
   overflow: auto;
 }
 
@@ -71,4 +72,14 @@
   height: 40px;
   align-items: center;
   justify-content: space-between;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalFooter {
+  margin-top: 10px;
 }
