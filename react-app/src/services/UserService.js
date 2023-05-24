@@ -55,9 +55,16 @@ export const makeReservation = async (reservation) => {
     let response = await axios.post(`${baseUrl}/reservation`, reservation, {
       headers,
     });
+    // .then((res) => {
+    //   return res;
+    // })
+    // .catch((err) => {
+    //   return err;
+    // });
     return response;
   } catch (error) {
     console.log("Error from try catch:", error);
+    return error;
   }
 };
 
@@ -139,5 +146,22 @@ export const getRoomsBySize = async (size) => {
     return response;
   } catch (error) {
     console.log("Error from try catch:", error);
+  }
+};
+
+export const makeReview = async (review) => {
+  try {
+    const token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    let response = await axios.post(`${baseUrl}/review`, review, {
+      headers,
+    });
+    return response;
+  } catch (error) {
+    console.log("Error from try catch:", error);
+    return error;
   }
 };

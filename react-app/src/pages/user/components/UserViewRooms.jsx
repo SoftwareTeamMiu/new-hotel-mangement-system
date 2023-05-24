@@ -91,8 +91,6 @@ function UserViewRooms() {
         .then((res) => {
           setSizes(res.data.sizes);
           setLocations(res.data.locations);
-          console.log(sizes);
-          console.log(locations);
         })
         .catch((err) => {
           setErrorMessage("Error with fetching Locations and Sizes");
@@ -104,6 +102,7 @@ function UserViewRooms() {
     fetchRooms();
     fetchSizesLocations();
   }, []);
+  console.log(rooms);
   return (
     <div
       style={{
@@ -118,7 +117,7 @@ function UserViewRooms() {
           justifyContent: "space-between",
         }}
       >
-        <input type="text" placeholder="Search" />
+        {/* <input type="text" placeholder="Search" /> */}
         <div>
           <DropdownMenu
             keys={sizes}
@@ -126,6 +125,8 @@ function UserViewRooms() {
             onSelect={handleGetRoomsBySize}
             title="Filter By Size"
           />
+        </div>
+        <div>
           <DropdownMenu
             keys={locations}
             values={locations}
