@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hotel.hotelmangementsystem.models.Review;
+import com.hotel.hotelmangementsystem.models.Room;
 import com.hotel.hotelmangementsystem.repositories.ReviewRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -25,6 +26,9 @@ public class ReviewService {
     UserService userService;
 
     @Autowired
+    RoomServices roomServices;
+
+    @Autowired
     Validator validator = Validation.buildDefaultValidatorFactory()
             .getValidator();
 
@@ -36,6 +40,10 @@ public class ReviewService {
             review.setUser(userService.getUserByToken(token));
             review.setReview_title((String) body.get("review_title"));
             review.setReview_description((String) body.get("review_description"));
+            Room room = new Room();
+            String room_id = (String) body.get("room_id");
+            room = roomServices.getRoomById(Integer.parseInt(room_id));
+            review.setRoom(room);
             if (validateReview(review)) {
                 return new ResponseEntity<List<String>>(errorMessages, HttpStatus.BAD_REQUEST);
             } else {

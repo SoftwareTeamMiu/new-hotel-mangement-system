@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CenterHeader from "../../components/CenterHeader";
 import MessageModal from "../../components/MessageModal";
 import CenterBox from "./components/CenterBox";
@@ -20,6 +20,7 @@ function LoginPage() {
   const handleLoginRequest = async (loginModel) => {
     await login(loginModel).then((response) => {
       if (response.status === 200) {
+        console.log();
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/");
@@ -29,7 +30,7 @@ function LoginPage() {
       }
     });
   };
-  var user = JSON.parse(localStorage.getItem("user"));
+  // var user = JSON.parse(localStorage.getItem("user"));
   // useEffect(() => {
   //   document.title = "Login Page";
   //   const checkAuth = async () => {

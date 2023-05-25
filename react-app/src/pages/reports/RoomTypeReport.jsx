@@ -1,8 +1,8 @@
-import Report from '../components/Report'
-import RoomTypeModel from '../models/RoomTypeModel'
+import Report from '../../components/Report'
+import RoomTypeModel from '../../models/RoomTypeModel'
 
 const RoomTypeReport = () => {
-  const columns = ['id' , 'size' , "location"]
+  const columns = ['id' , "size", "location"]
 
   return(
     <Report

@@ -113,4 +113,24 @@ public class RoomController {
             return ResponseEntity.badRequest().body("Error deleting room: " + e.getMessage());
         }
     }
+
+    @GetMapping("/size/{size}")
+    public ResponseEntity getRoomsBySize(@PathVariable int size) {
+        try {
+            List<Room> rooms = roomServices.getRoomsBySize(size);
+            return ResponseEntity.ok(rooms);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error getting rooms by size: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/location/{location}")
+    public ResponseEntity getRoomsByLocation(@PathVariable int location) {
+        try {
+            List<Room> rooms = roomServices.getRoomsByLocation(location);
+            return ResponseEntity.ok(rooms);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error getting rooms by location: " + e.getMessage());
+        }
+    }
 }

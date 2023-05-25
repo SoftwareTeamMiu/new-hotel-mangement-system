@@ -33,11 +33,12 @@ function UserReservations() {
           setLoading(false);
           handleOpen();
         });
+
       if (onDelete) {
         fetchReservations();
         setOnDelete(false);
       } else {
-        setLoading(false);
+        // setLoading(false);
       }
     };
     fetchReservations();
@@ -74,8 +75,8 @@ function UserReservations() {
             <tbody>
               {reservations.map((reservation) => (
                 <tr key={reservation.id}>
-                  <td>{reservation.start_date.substring(0, 10)}</td>
-                  <td>{reservation.end_date.substring(0, 10)}</td>
+                  <td>{reservation.start_date}</td>
+                  <td>{reservation.end_date}</td>
                   <td>{reservation.total_price}</td>
                   <td>{reservation.reservationStatus.status}</td>
                   <td>{reservation.paymentMethods.method_name}</td>

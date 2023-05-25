@@ -43,6 +43,7 @@ public class ReservationController {
     @PostMapping("")
     public ResponseEntity createReservation(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
         try {
+
             Reservation reservation = new Reservation();
             User user = new User();
             ReservationStatus reservationStatus = new ReservationStatus();
@@ -57,13 +58,14 @@ public class ReservationController {
             String end_string_date = (String) request_body.get("reservation_end_date");
             Date end_date = dateFormat.parse(end_string_date);
             reservation.setStart_date(end_date);
-            //
+
             String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
             String Userid = jwtService.extractUUID(token);
             user = userService.getUserById(Userid);
             //
             String reservationstatusID = (String) request_body.get("reservation_status_id");
-            reservationStatus = reservationStatusService.getReservationStatusById(Integer.parseInt(reservationstatusID));
+            reservationStatus = reservationStatusService
+                    .getReservationStatusById(Integer.parseInt(reservationstatusID));
             //
             String paymentmethodID = (String) request_body.get("payment_method_id");
             paymentMethods = paymentMethodsService.getPaymentMethodByID(Integer.parseInt(paymentmethodID));
@@ -91,7 +93,15 @@ public class ReservationController {
             reservation.setReservationStatus(reservationStatus);
             reservation.setTotal_price(total_price);
 
+            boolean hasOverlappingReservations = reservationService.hasOverlappingReservations(reservation.getRooms(),
+                    reservation.getStart_date(),
+                    reservation.getEnd_date());
+            if (hasOverlappingReservations) {
+                return ResponseEntity.badRequest().body("there is rooms are already booked for the given dates");
+            }
+
             reservationService.createReservation(reservation);
+            System.out.println("Done");
 
             return ResponseEntity.ok().body("Reservation Created Successfully");
 

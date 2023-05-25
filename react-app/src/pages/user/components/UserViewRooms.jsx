@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import RoomCard from "./RoomCard";
 import MessageModal from "../../../components/MessageModal";
-import { getAllRooms } from "../../../services/UserService";
+import {
+  getAllRooms,
+  getLocationsAndSizes,
+  getRoomsByLocation,
+  getRoomsBySize,
+} from "../../../services/UserService";
+import DropdownMenu from "../../../components/DropdownMenu";
 
 function UserViewRooms() {
   const [rooms, setRooms] = useState([]);
@@ -9,12 +15,39 @@ function UserViewRooms() {
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [reservationRooms, setReservationRooms] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [locations, setLocations] = useState([]);
+
   function handleClose() {
     setOpen(false);
   }
   function handleOpen() {
     setOpen(true);
   }
+
+  const handleGetRoomsBySize = async (size) => {
+    await getRoomsBySize(size)
+      .then((res) => {
+        setRooms(res.data);
+      })
+      .catch((err) => {
+        setErrorMessage("Error with fetching rooms");
+        setLoading(false);
+        handleOpen();
+      });
+  };
+
+  const handleGetRoomsByLocation = async (locationId) => {
+    await getRoomsByLocation(locationId)
+      .then((res) => {
+        setRooms(res.data);
+      })
+      .catch((err) => {
+        setErrorMessage("Error with fetching rooms");
+        setLoading(false);
+        handleOpen();
+      });
+  };
 
   const handleAddToReservation = (roomId, flag) => {
     if (flag === "0") {
@@ -30,7 +63,6 @@ function UserViewRooms() {
         JSON.stringify(reservationRooms.filter((room) => room !== roomId))
       );
     }
-    // console.log(localStorage);
   };
   useEffect(() => {
     document.title = "View Rooms";
@@ -52,11 +84,25 @@ function UserViewRooms() {
           JSON.parse(localStorage.getItem("reservationRooms"))
         );
       }
-
-      // console.log(localStorage);
     };
+
+    const fetchSizesLocations = async () => {
+      await getLocationsAndSizes()
+        .then((res) => {
+          setSizes(res.data.sizes);
+          setLocations(res.data.locations);
+        })
+        .catch((err) => {
+          setErrorMessage("Error with fetching Locations and Sizes");
+          setLoading(false);
+          handleOpen();
+        });
+    };
+
     fetchRooms();
+    fetchSizesLocations();
   }, []);
+  console.log(rooms);
   return (
     <div
       style={{
@@ -65,12 +111,29 @@ function UserViewRooms() {
     >
       <div
         style={{
-          // backgroundColor: "yellow",
           padding: "20px",
           marginBottom: "20px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
-        <input type="text" placeholder="Search" />
+        {/* <input type="text" placeholder="Search" /> */}
+        <div>
+          <DropdownMenu
+            keys={sizes}
+            values={sizes}
+            onSelect={handleGetRoomsBySize}
+            title="Filter By Size"
+          />
+        </div>
+        <div>
+          <DropdownMenu
+            keys={locations}
+            values={locations}
+            onSelect={handleGetRoomsByLocation}
+            title="Filter By Location"
+          />
+        </div>
       </div>
       <div
         style={{
