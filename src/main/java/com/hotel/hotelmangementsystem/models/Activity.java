@@ -12,11 +12,16 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int durationHrs;
+
     private Date date;
+
     private String hostName;
+
     public Activity() {
     }
+
     public Activity(int durationHrs, Date date, String hostName) {
         this.durationHrs = durationHrs;
         this.date = date;

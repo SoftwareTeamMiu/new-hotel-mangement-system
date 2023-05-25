@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./css/RoomCard.module.css";
 import RoomPage from "./RoomPage";
+import CreateRoomReview from "./CreateReview";
+import GetReviewsPage from "./GetReviewPage";
 
 function RoomCard(props) {
   const [open, setOpen] = useState(false);
-  // const [roomDetailsPage, setRoomDetailsPage] = useState();
+  const [createRommBolean, setCreateRommBolean] = useState(false);
+  const [getRommBolean, setGetRommBolean] = useState(false);
   const handleOpen = () => {
     setOpen(true);
-    console.log("alo open");
+  };
+
+  const handleCreateRoomReivew = () => {
+    setCreateRommBolean(true);
+  };
+  const handleGetRoomReivew = () => {
+    setGetRommBolean(true);
   };
 
   const handleClose = (e) => {
@@ -15,7 +24,8 @@ function RoomCard(props) {
       e.preventDefault();
     }
     setOpen(false);
-    console.log("alo close");
+    setCreateRommBolean(false);
+    setGetRommBolean(false);
   };
 
   useEffect(() => {
@@ -25,22 +35,14 @@ function RoomCard(props) {
       }
     };
 
-    // const handleOutsideClick = (e) => {
-    //   if (!e.target.closest(".room_card")) {
-    //     // handleClose();
-    //   }
-    // };
-
-    if (open) {
+    if (open || createRommBolean || getRommBolean) {
       document.addEventListener("keydown", handleKeyPress);
-      // document.addEventListener("mousedown", handleOutsideClick);
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
-      // document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [open]);
+  }, []);
 
   var hasOffer;
   if (props.room.offer != null) {
@@ -55,9 +57,6 @@ function RoomCard(props) {
 
   return (
     <div className={styles.room_card}>
-      {/* <div>Room No: {props.room.id}</div> */}
-      {/* <div>Size: {props.room.roomType.size}</div> */}
-      {/* <div>Location: floor {props.room.roomType.location}</div> */}
       {hasOffer ? (
         <>
           <strike
@@ -99,6 +98,16 @@ function RoomCard(props) {
           View Room Details
         </button>
         <RoomPage open={open} close={handleClose} room={props.room} />
+        <CreateRoomReview
+          room={props.room}
+          open={createRommBolean}
+          close={handleClose}
+        />
+        <GetReviewsPage
+          room_reviews={props.room.reviews}
+          open={getRommBolean}
+          close={handleClose}
+        />
         {props.flag === "0" ? (
           <button onClick={handleRoom} className={styles.add_to_reservaion_btn}>
             Add to reservation
@@ -111,6 +120,25 @@ function RoomCard(props) {
             remove to reservation
           </button>
         )}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <button
+          onClick={handleGetRoomReivew}
+          className={styles.add_to_reservaion_btn}
+        >
+          Show Room Reviews
+        </button>
+        <button
+          onClick={handleCreateRoomReivew}
+          className={styles.add_to_reservaion_btn}
+        >
+          Create Review
+        </button>
       </div>
     </div>
   );

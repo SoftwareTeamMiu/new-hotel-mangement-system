@@ -13,7 +13,7 @@ function UserDropdown() {
 
   const handleLogout = async () => {
     await localStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -49,6 +49,15 @@ function UserDropdown() {
               onClick={handleToggle}
             >
               Checkout
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/activity"
+              className={styles.dropdown_link}
+              onClick={handleToggle}
+            >
+              Activities
             </Link>
           </li>
           <li>

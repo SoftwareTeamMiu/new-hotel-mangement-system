@@ -1,42 +1,32 @@
 import UserHeader from "../../components/UserHeader";
-// import UserCheckout from "./components/UserCheckout";
-// import UserReservations from "./components/UserReservations";
-import UserViewRooms from "./components/UserViewRooms";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import UserActivities from "./components/UserActivities";
 
-function UserMainPage() {
+function UserActivitiesPage() {
   const navigate = useNavigate();
   const [name, setName] = React.useState("");
-  const [loading, setLoading] = React.useState(true);
-
   var user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     document.title = "User Main Page";
+    // console.log(user);
     const checkAuth = async () => {
       const token = await localStorage.getItem("token");
-      if (token == null) {
+      if (!token) {
         navigate("/login");
       } else {
         setName(user.name);
-        setLoading(false);
-        // console.log("set loading to false done");
       }
     };
     checkAuth();
-  }, []);
+  });
 
   return (
     <>
-      {loading && <div>Loading...</div>}
-      {!loading && (
-        <>
-          <UserHeader user_name={name} />
-          <UserViewRooms />
-        </>
-      )}
+      <UserHeader user_name={name} />
+      <UserActivities />
     </>
   );
 }
 
-export default UserMainPage;
+export default UserActivitiesPage;

@@ -33,17 +33,14 @@ export default function UserCheckout() {
   }
 
   const handleSelectionMethod = (selectedValue) => {
-    console.log("Selected Payment Method:", selectedValue);
     setSelectedPaymentMethod(selectedValue);
   };
 
   const handleSelectionStartDate = (selectedValue) => {
-    console.log("Start value:", selectedValue);
     setStartDate(selectedValue);
   };
 
   const handleSelectionEndDate = (selectedValue) => {
-    console.log("End Date value:", selectedValue);
     setEndDate(selectedValue);
   };
 
@@ -58,8 +55,6 @@ export default function UserCheckout() {
       handleOpen();
       return;
     } else {
-      console.log("Make Reservation");
-      console.log(rooms);
       let reservation = {
         payment_method_id: selectedPaymentMethod,
         reservation_start_date: startDate,
@@ -67,20 +62,20 @@ export default function UserCheckout() {
         rooms: rooms.map((item) => item.id),
         reservation_status_id: "1",
       };
-      console.log(reservation);
-      await makeReservation(reservation)
-        .then((res) => {
-          setErrorMessage("Reservation made successfully");
-          handleOpen();
-          console.log(res);
-          localStorage.removeItem("reservationRooms");
-          setRooms([]);
-          setOnDelete(!onDelete);
-        })
-        .catch((err) => {
-          setErrorMessage("Error while making reservation");
-          handleOpen();
-        });
+      const response = await makeReservation(reservation);
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.removeItem("reservationRooms");
+        setRooms([]);
+        setOnDelete(!onDelete);
+        setErrorMessage("Reservation made successfully");
+        handleOpen();
+        //
+      } else {
+        setErrorMessage(response.response.data);
+        handleOpen();
+        return;
+      }
     }
   };
 
