@@ -183,10 +183,11 @@ public class ReservationController {
                     paymentMethods = paymentMethodsService.getPaymentMethodByID(paymentmethodID);
                     reservation.setPaymentMethods(paymentMethods);
                 }
-                if (request_body.get("reservations_status_id") != null) {
+                if (request_body.get("reservation_status_id") != null) {
                     ReservationStatus reservationStatus = new ReservationStatus();
-                    int reservationstatusID = (Integer) request_body.get("reservation_status_id");
-                    reservationStatus = reservationStatusService.getReservationStatusById(reservationstatusID);
+                    String reservationstatusID = (String) request_body.get("reservation_status_id");
+                    reservationStatus = reservationStatusService
+                            .getReservationStatusById(Integer.parseInt(reservationstatusID));
                     reservation.setReservationStatus(reservationStatus);
                 }
                 reservationService.createReservation(reservation);

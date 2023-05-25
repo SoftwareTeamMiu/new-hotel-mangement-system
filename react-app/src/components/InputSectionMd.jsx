@@ -1,20 +1,6 @@
 import { useEffect, useState } from 'react';
 import './css/InputSectionMd.scss'
 
-export const InputSectionMd = ({label,onInputChange,disabled = false,defaultValue}) => {
-  const [inputValue, setInputValue] = useState(defaultValue);
-
-  useEffect(() => {
-    setInputValue(defaultValue);
-  }, [defaultValue]);
-
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
-    // Call the callback function passed from the parent component
-    onInputChange(value);
-  };
-
 const InputSectionMd = ({label,onInputChange,disabled = false,defaultValue}) => {
   const [inputValue, setInputValue] = useState(defaultValue);
 
@@ -45,3 +31,5 @@ const InputSectionMd = ({label,onInputChange,disabled = false,defaultValue}) => 
     </div>
   )
 }
+
+export default InputSectionMd;
