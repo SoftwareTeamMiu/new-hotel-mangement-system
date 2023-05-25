@@ -53,6 +53,15 @@ function UserDropdown() {
           </li>
           <li>
             <Link
+              to="/activity"
+              className={styles.dropdown_link}
+              onClick={handleToggle}
+            >
+              Activities
+            </Link>
+          </li>
+          <li>
+            <Link
               className={styles.dropdown_link}
               onClick={() => {
                 handleToggle();
