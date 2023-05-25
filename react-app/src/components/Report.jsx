@@ -38,7 +38,7 @@ const Report = props => {
   
   /* --------- Event Handlers --------- */
   // Handler for updating the Form Data Obj with each new input
-  const onInputChange = (value,field) => setFormDataObj({...formDataObj, [field] : Number(value)});
+  const onInputChange = (value,field) => setFormDataObj({...formDataObj, [field] : value});
   // Handler for clearing the values of the Form Data Obj for new input
   const onClear = () => {
     setFormDataObj(new props.model())
