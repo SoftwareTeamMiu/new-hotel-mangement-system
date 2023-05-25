@@ -14,8 +14,6 @@ const InputSectionSm = ({label,onInputChange,disabled = false,defaultValue}) => 
     // Call the callback function passed from the parent component
     onInputChange(value,label);
   };
-
-
   return (
     <div class="InputSectionSm">
       <div class="LabelLayout">

@@ -10,8 +10,7 @@ const Btn = ({text,onClick}) => {
       <div class="Text">
         {text}
       </div>
-    </div>
-  )
+      </div>
+    )
 }
-
-export default Btn;
+  export default Btn;
