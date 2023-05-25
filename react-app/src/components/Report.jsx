@@ -6,23 +6,70 @@ import Table from "./Table"
 import './css/Report.scss'
 
 import { getAll, createOne, updateOne, deleteOne } from '../services/Service'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Report = props => {
   const [dataArr, setDataArr] = useState() // Array of Objects representing database data (with sub-objects replaced with values)
-  const [formDataObj, setFormDataObj] = useState(new props.model) // Object containing the data of the form fields currently
+  const [valDataArr, setValDataArr] = useState()
+  const [idDataArr, setIdDataArr] = useState()
+  const [formDataObj, setFormDataObj] = useState(new props.model()) // Object containing the data of the form fields currently
   const [formDataId, setFormDataId] = useState() // Id of the form id field
   const [latestId, setLatestId] = useState() // The last id assigned to an object in the database
+
+  // Debugger
+  useEffect(() => {
+    const Debugobj = {
+      dataArr: dataArr,
+      valDataArr: valDataArr,
+      idDataArr: idDataArr,
+      formDataObj: formDataObj,
+      formDataId: formDataId,
+      latestId: latestId
+    }
+    console.log("Debugobj");
+    console.log(Debugobj);
+  }, [dataArr, valDataArr, idDataArr, formDataObj, formDataId, latestId])
+
+  // Utility for refreshing the page
+  const refresh = () => window.location.reload(false);
+  // Utility for traversing the Data Array for a certain object id
+  const findObjFromId = (dataArr , id) => dataArr.find(dataObj => dataObj.id === id)
+
   
-  const refresh = () => {
-    window.location.reload(false);
+  /* --------- Event Handlers --------- */
+  // Handler for updating the Form Data Obj with each new input
+  const onInputChange = (value,field) => setFormDataObj({...formDataObj, [field] : Number(value)});
+  // Handler for clearing the values of the Form Data Obj for new input
+  const onClear = () => {
+    setFormDataObj(new props.model())
+    setFormDataId('')
+  }
+  // Handler for submitting the Form Data Obj to the database
+  const onSubmit = () => {
+    if (findObjFromId(dataArr, formDataId)) {
+      let postObj = props.model.postObjConstructor(formDataObj); console.log(postObj);
+      updateOne(props.apiBaseUrl, postObj, formDataId)
+      .then(refresh())
+    } else {
+      let postObj = props.model.postObjConstructor(formDataObj); console.log(postObj);
+      createOne(props.apiBaseUrl, postObj)
+      .then(refresh())
+    }
+  }
+  // Handler for displaying the values of the selected data row in the form input fields
+  const onRowClick = (e,id) => {
+    const selectedObj = findObjFromId(idDataArr, id)
+    setFormDataObj(selectedObj)
+    setFormDataId(id)
+  }
+  // Handler for deleting the selected data row from the database
+  const onDelete = () => {
+    deleteOne(props.apiBaseUrl, formDataId)
+    .then(refresh())
   }
   
-  const onInputChange = (value,field) => formDataObj[field] = value;
-  
-  const columnsArr = props.columns
   // Dynamic Fields
-  const formFields = columnsArr.map(columnName => {
+  const formFields = props.columns.map(columnName => {
     if (columnName == "id") {
       return <InputSectionSm label={columnName} defaultValue={formDataId} disabled={true} />
     } else {
@@ -37,61 +84,30 @@ const Report = props => {
   })
   // Dynamic Table Columns
   const TableCols = {}
-  for (let i = 1; i <= columnsArr.length; i++) {
-    TableCols[`column${i}`] = columnsArr[i-1]
+  for (let i = 1; i <= props.columns.length; i++) {
+    TableCols[`column${i}`] = props.columns[i-1]
   }
 
-  // Event Handler to clear the values of the form fields for new input
-  const onClear = () => {
-    setFormDataObj(new props.model)
-    setFormDataId(latestId+1)
-    console.log(formDataObj);
-  }
 
   // GET Rooms
-  useState(() => {
+  useEffect(() => {
     getAll(props.apiBaseUrl)
     .then(data => {
       const dataArr = data
       const lastDataId = data[data.length-1].id
 
       setDataArr(dataArr)
-      setFormDataId(lastDataId + 1)
       setLatestId(lastDataId)
+
+      setValDataArr(
+        dataArr.map(obj => props.model.valConstructor(obj))
+      )
+      setIdDataArr(
+        dataArr.map(obj => props.model.idConstructor(obj))
+      )
     })
   }, [])
 
-  // GET One Room
-  // Tarverse the Data Array for a certain object
-  const findObjFromId = (dataArr , id) => dataArr.find(dataObj => dataObj.id === id)
-
-  // POST / PUT Room
-  // Event handler for submitting the form fields data to the database
-  const onSubmit = () => {
-    if (dataArr.includes(formDataObj)) {
-      updateOne(props.apiBaseUrl, formDataObj, formDataId)
-      .then(refresh())
-    } else {
-      createOne(props.apiBaseUrl, formDataObj)
-      .then(refresh())
-    }
-  }
-
-  // Event handler for displaying the values of the selected data row in the form input fields
-  const onRowClick = (e,id) => {
-    const selectedObj = findObjFromId(dataArr, id)
-    setFormDataObj(selectedObj)
-    setFormDataId(id)
-  }
-
-  // DELETE Room
-  // Event handler for deleting the selected data row from the database
-  const onDelete = () => {
-    deleteOne(props.apiBaseUrl, formDataId)
-    .then(refresh())
-  }
-
-  console.log(formFields);
   return (
     <div class='Report'>
       <Sidebar />
@@ -112,7 +128,7 @@ const Report = props => {
           </div>
         </div>
         <Table 
-          onClick={onRowClick} dataArr={dataArr}   
+          onClick={onRowClick} dataArr={valDataArr}   
           columnsObj={TableCols} header={props.reportName}/>
       </div>
     </div>
