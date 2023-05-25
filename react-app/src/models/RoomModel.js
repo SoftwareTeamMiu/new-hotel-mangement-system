@@ -1,29 +1,38 @@
-export class RoomModel{
-  constructor(id,price,offer_id,room_type_id,room_status_id) { 
+export default class RoomModel{
+  constructor(id="",price="",roomType="",roomStatus="",offer="") { 
     this.id = id;
     this.price = price;
-    this.offer_id = offer_id;
-    this.room_type_id = room_type_id;
-    this.room_status_id = room_status_id;
+    this.roomType = roomType;
+    this.roomStatus = roomStatus;
+    this.offer = offer;
   }
 
-  static parsedValConstructor = (dataObj) => {
+  static valConstructor = (dataObj) => {
     let id = dataObj.id
     let price = dataObj.price
-    let offerPercent = dataObj.offer.percentage
+    let roomType = dataObj.roomType.id
     let roomStatus = dataObj.roomStatus.status
-    let roomTypeId = dataObj.roomType.id
+    let offer = dataObj.offer.percentage
 
-    return new RoomModel(id,price,offerPercent,roomStatus,roomTypeId)
+    return new RoomModel(id,price,roomType,roomStatus,offer)
   }
 
-  static parsedIdConstructor = (dataObj) => {
+  static idConstructor = (dataObj) => {
     let id = dataObj.id
     let price = dataObj.price
-    let offerPercent = dataObj.offer.id
+    let roomType = dataObj.roomType.id
     let roomStatus = dataObj.roomStatus.id
-    let roomTypeId = dataObj.roomType.id
+    let offer = dataObj.offer.id
 
-    return new RoomModel(id,price,offerPercent,roomStatus,roomTypeId)
+    return new RoomModel(id,price,roomType,roomStatus,offer)
+  }
+
+  static postObjConstructor = (dataObj) => {
+    return {
+      "price": Number(dataObj.price),
+      "room_type_id": Number(dataObj.roomType),
+      "room_status_id": Number(dataObj.roomStatus),
+      "offer_id": Number(dataObj.offer)
+    }
   }
 }

@@ -1,5 +1,5 @@
-import Report from '../components/Report'
-import RoomStatusModel from '../models/RoomStatusModel'
+import Report from '../../components/Report'
+import RoomStatusModel from '../../models/RoomStatusModel'
 
 const RoomStatusReport = () => {
   const columns = ['id' , "status"]

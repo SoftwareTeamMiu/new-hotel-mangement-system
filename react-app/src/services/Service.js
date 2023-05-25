@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxOWM4ZTU0Ny03YzUxLTRkODMtOWZjNi02NzgxOTViZmM2N2EiLCJleHAiOjE2ODQ5NDg2Nzd9.bRtxCr04gO3kOhDKOitxVjCDsLUNKVIy8bVsPGg8dp0';
+
+const token = localStorage.getItem("token");
 
 export const getAll = async (apiBaseUrl) => {
   const options = {
@@ -12,7 +13,7 @@ export const getAll = async (apiBaseUrl) => {
   };
 
   try {
-    console.log("Axios Success");
+    console.log("Axios getAll");
     return (await axios(options)).data;
   } catch (error) {
     console.log("Axios Error");
@@ -33,11 +34,13 @@ export const createOne = async (apiBaseUrl, dataObj) => {
   };
 
   try {
-    console.log("Axios Success");
+    console.log("Axios createOne");
     return await axios(options);
   } catch (error) {
     console.log("Axios Error");
     console.log(error);
+    console.log("Axios Data");
+    console.log(dataObj);
   }
 };
 
@@ -54,11 +57,13 @@ export const updateOne = async (apiBaseUrl, dataObj, id) => {
   };
 
   try {
-    console.log("Axios Success");
+    console.log("Axios updateOne");
     return await axios(options);
   } catch (error) {
     console.log("Axios Error");
     console.log(error);
+    console.log("Axios Data");
+    console.log(dataObj);
   }
 };
 
@@ -72,7 +77,7 @@ export const deleteOne = async (apiBaseUrl, id) => {
   };
 
   try {
-    console.log("Axios Success");
+    console.log("Axios deleteOne");
     return await axios(options);
   } catch (error) {
     console.log("Axios Error");
