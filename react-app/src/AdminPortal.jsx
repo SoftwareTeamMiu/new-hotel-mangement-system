@@ -4,6 +4,7 @@ import RoomReport from "./pages/reports/RoomReport";
 import { Routes, Route } from "react-router-dom";
 import RoomTypeReport from "./pages/reports/RoomTypeReport";
 import OffersReport from "./pages/reports/OffersReport";
+import ReviewReport from "./pages/reports/ReviewReport";
 
 const AdminPortal = props => {
   return (
@@ -12,6 +13,7 @@ const AdminPortal = props => {
       <Route path="/room" element={<RoomReport />} />
       <Route path="/roomtype" element={<RoomTypeReport />} />
       <Route path="/offer" element={<OffersReport />} />
+      <Route path="/review" element={<ReviewReport />} />
     </Routes>
   )
 }
