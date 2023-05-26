@@ -53,17 +53,105 @@ function UserReservations() {
             close={handleClose}
             error_message={errorMessage}
           />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <h1>Reservations</h1>
-          </div>
-          <table className={styles.table}>
+          {reservations.map((reservation) => (
+            <>
+              <div
+                style={{
+                  color: "Black",
+                  marginTop: "12px",
+                  marginBottom: "12px",
+                  fontSize: "40px",
+                  fontWeight: "bold",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Reservaion No: {reservation.id}
+              </div>
+              <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Total Price</th>
+                    <th>Statues</th>
+                    <th>Payment Method</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr key={reservation.id}>
+                    <td>{reservation.start_date}</td>
+                    <td>{reservation.end_date}</td>
+                    <td>{reservation.total_price}</td>
+                    <td>{reservation.reservationStatus.status}</td>
+                    <td>{reservation.paymentMethods.method_name}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          console.log("object");
+                          deleteReservation(reservation.id);
+                          setOnDelete(true);
+                        }}
+                        className={styles.btn_delete}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              {/* <div
+                style={{
+                  color: "Black",
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontSize: "40px",
+                  fontWeight: "bold",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Rooms
+              </div> */}
+              <br />
+              <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th>Room No</th>
+                    <th>Size</th>
+                    <th>Floor</th>
+                    <th>Original Price</th>
+                    <th>Offer Percentage</th>
+                    <th>Price after offer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reservation.rooms.map((room) => (
+                    <tr key={room.id}>
+                      <td>{room.id}</td>
+                      <td>{room.roomType.size}</td>
+                      <td>{room.roomType.location}</td>
+                      <td>{room.price}</td>
+                      <td>
+                        {room.offer === null ? 0 : room.offer.percentage * 100}{" "}
+                        %
+                      </td>
+                      <td>
+                        {room.offer === null
+                          ? room.price
+                          : room.price * room.offer.percentage}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ))}
+          {/* <table className={styles.table}>
             <thead className={styles.thead}>
               <tr>
+                <th>ID</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Total Price</th>
@@ -75,6 +163,7 @@ function UserReservations() {
             <tbody>
               {reservations.map((reservation) => (
                 <tr key={reservation.id}>
+                  <td>{reservation.id}</td>
                   <td>{reservation.start_date}</td>
                   <td>{reservation.end_date}</td>
                   <td>{reservation.total_price}</td>
@@ -96,7 +185,7 @@ function UserReservations() {
               ))}
             </tbody>
           </table>
-          {/* <div
+          <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -135,7 +224,7 @@ function UserReservations() {
                 ))
               )}
             </tbody>
-          </table> */}
+          </table>*/}
         </>
       ) : (
         <div
