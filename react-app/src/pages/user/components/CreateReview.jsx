@@ -42,6 +42,7 @@ const CreateRoomReview = (props) => {
       setErrorMessage("Review made successfully");
       handleOpen();
       await delay(1000);
+      window.location.reload(false);
       props.close();
     } else {
       setErrorMessage(response.response.data);
