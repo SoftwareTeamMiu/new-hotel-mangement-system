@@ -30,7 +30,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = false)
+    @JsonIdentityReference(alwaysAsId = true)
     // @JsonIgnore
     private Room room;
 
