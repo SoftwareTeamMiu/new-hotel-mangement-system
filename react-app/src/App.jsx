@@ -9,6 +9,7 @@ import UserCheckoutPage from "./pages/user/UserCheckoutPage";
 import UserActivitiesPage from "./pages/user/UserActivitiesPage";
 import AdminPortal from "./AdminPortal";
 import ReceptionistPage from "./pages/reservation/receptionistpage";
+import ReviewReport from "./pages/reports/ReviewReport";
 function App() {
   return (
     <>

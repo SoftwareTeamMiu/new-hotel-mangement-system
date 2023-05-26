@@ -1,7 +1,8 @@
 import './css/Table.scss'
 import TableRow from './TableRow' 
 
-const Table = props => { console.log(props);
+const Table = props => { 
+  console.log(props);
   const handleOnClick = (event,value1) => props.onClick(event,value1)
   
   let dataItems = []
