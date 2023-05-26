@@ -6,6 +6,7 @@ import RoomTypeReport from "./pages/reports/RoomTypeReport";
 import OffersReport from "./pages/reports/OffersReport";
 import ReviewReport from "./pages/reports/ReviewReport";
 import ActivityReport from "./pages/reports/ActivityReport";
+import PaymentMethodReport from "./pages/reports/PaymentMethodReport"
 
 const AdminPortal = props => {
   return (
@@ -16,6 +17,7 @@ const AdminPortal = props => {
       <Route path="/offer" element={<OffersReport />} />
       <Route path="/review" element={<ReviewReport />} />
       <Route path="/activities" element={<ActivityReport />} />
+      <Route path="/paymentmethod" element={<PaymentMethodReport />} />
     </Routes>
   )
 }
