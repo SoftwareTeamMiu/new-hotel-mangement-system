@@ -1,5 +1,6 @@
 import Btn from "./Btn"
 import InputSectionSm from "./InputSectionSm"
+import InputSectionDrop from "./InputSectionDrop"
 import MainHeader from "./MainHeader"
 import Sidebar from "./Sidebar"
 import Table from "./Table"
@@ -38,7 +39,7 @@ const Report = props => {
   
   /* --------- Event Handlers --------- */
   // Handler for updating the Form Data Obj with each new input
-  const onInputChange = (value,field) => setFormDataObj({...formDataObj, [field] : value});
+  const onInputChange = (value,field) => setFormDataObj({...formDataObj, [field] : Number(value)});
   // Handler for clearing the values of the Form Data Obj for new input
   const onClear = () => {
     setFormDataObj(new props.model())
@@ -74,7 +75,8 @@ const Report = props => {
       return <InputSectionSm label={columnName} defaultValue={formDataId} disabled={true} />
     } else {
       return (
-        <InputSectionSm
+        <InputSectionDrop
+          menuVals= {['val1','val2','val3','val3']}
           label={columnName}
           defaultValue={formDataObj[columnName]}
           onInputChange={onInputChange}
