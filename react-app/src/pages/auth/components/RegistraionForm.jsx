@@ -8,6 +8,7 @@ function RegistrationForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const pattern = /^([a-zA-Z0-9-.]+)@([a-zA-Z0-9-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -25,6 +26,11 @@ function RegistrationForm(props) {
       handleOpen();
       return;
     } else {
+      if (pattern.test(email) === false) {
+        setErrorMessage("Please enter valid email");
+        handleOpen();
+        return;
+      }
       props.onSubmit(new RegisterModel(name, email, password));
     }
   };
