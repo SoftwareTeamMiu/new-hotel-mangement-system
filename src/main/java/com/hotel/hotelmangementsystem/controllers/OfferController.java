@@ -36,7 +36,7 @@ public class OfferController {
 
             // parse date from String to Date
             String expirationStringDate = request_body.get("offer_expiration_date");
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date expirationDate = dateFormat.parse(expirationStringDate);
             new_offer.setExpirationDate(expirationDate);
 
@@ -80,7 +80,7 @@ public class OfferController {
 
                 // parse date from String to Date
                 String expirationStringDate = request_body.get("offer_expiration_date");
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date expirationDate = dateFormat.parse(expirationStringDate);
 
                 offer.setExpirationDate(expirationDate);
