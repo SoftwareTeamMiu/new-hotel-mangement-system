@@ -24,7 +24,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping("manager/api/review")
+    @PostMapping("api/review")
     public ResponseEntity createReview(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
         try {
             String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
@@ -53,7 +53,7 @@ public class ReviewController {
 
     }
 
-    @PutMapping("manager/api/review/{reviewId}")
+    @PutMapping("api/review/{reviewId}")
     public ResponseEntity updateReview(@PathVariable int reviewId, HttpServletRequest request,
             @RequestBody Map<String, Object> request_body) {
         try {
