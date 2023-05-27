@@ -16,6 +16,7 @@ const DatePicker = (props) => {
         {...(props.startDate && { min: props.startDate })}
         value={selectedDate}
         onChange={handleSelect}
+        disabled={props.disabled}
       />
     </div>
   );
