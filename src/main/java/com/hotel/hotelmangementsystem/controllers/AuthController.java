@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -66,7 +68,11 @@ public class AuthController {
             userService.createUser(user);
             return ResponseEntity.ok().body("User created successfully");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            String constraintName = userService.extractConstraintName(e);
+            if ("user.UK_ob8kqyqqgmefl0aco34akdtpe".equals(constraintName)) {
+                return ResponseEntity.badRequest().body("User with this email already exists.");
+            }
+            return ResponseEntity.badRequest().body("Error creating the user.");
         }
     }
 
@@ -85,8 +91,9 @@ public class AuthController {
                 return new ResponseEntity<>("User Not found", HttpStatus.NOT_FOUND);
             }
             String token = this.jwtService.generateToken(user.getId());
-            Map<String, String> res = new HashMap<String, String>();
+            Map<String, Object> res = new HashMap<String, Object>();
             res.put("token", token);
+            res.put("user", user);
 
             return ResponseEntity.ok().body(res);
         } catch (Exception e) {

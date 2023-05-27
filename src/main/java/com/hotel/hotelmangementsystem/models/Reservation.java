@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Reservation {
 
@@ -12,12 +14,14 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "start_date")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Africa/Cairo")
     private Date start_date;
 
     @Column(name = "end_date")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Africa/Cairo")
     private Date end_date;
 
-    @Column(name="total_price")
+    @Column(name = "total_price")
     private double total_price;
 
     @ManyToOne(targetEntity = User.class, optional = false)
@@ -25,11 +29,7 @@ public class Reservation {
     private User customer;
 
     @ManyToMany
-    @JoinTable(
-            name = "reservation_rooms",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
-    )
+    @JoinTable(name = "reservation_rooms", joinColumns = @JoinColumn(name = "reservation_id"), inverseJoinColumns = @JoinColumn(name = "room_id"))
     private List<Room> rooms;
 
     @ManyToOne(targetEntity = PaymentMethods.class, optional = false)
@@ -43,7 +43,8 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int id, Date start_date, Date end_date, double total_price, User customer, List<Room> rooms, PaymentMethods paymentMethods, ReservationStatus reservationStatus) {
+    public Reservation(int id, Date start_date, Date end_date, double total_price, User customer, List<Room> rooms,
+            PaymentMethods paymentMethods, ReservationStatus reservationStatus) {
         this.id = id;
         this.start_date = start_date;
         this.end_date = end_date;

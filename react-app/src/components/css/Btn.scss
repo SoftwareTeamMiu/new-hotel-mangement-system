@@ -1,0 +1,44 @@
+.Btn{
+  /* Dimensions */
+  width: auto;
+  height: auto;
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Properties */
+  background: rgba(58.0, 111.0, 248.0, 1.0);
+  border-radius: 20px 20px 20px 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .Text{
+    /* Dimensions */
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 500;
+    text-transform: none;
+    font-size: 18px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+}

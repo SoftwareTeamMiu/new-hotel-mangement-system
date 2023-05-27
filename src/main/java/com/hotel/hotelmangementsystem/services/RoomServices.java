@@ -29,4 +29,12 @@ public class RoomServices {
         roomRepository.deleteById(id);
     }
 
+    public List<Room> getRoomsBySize(int size) {
+        return roomRepository.findByRoomTypeSize(size);
+    }
+
+    public List<Room> getRoomsByLocation(int location) {
+        return roomRepository.findByRoomTypeLocation(location);
+    }
+
 }

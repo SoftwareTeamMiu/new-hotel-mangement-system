@@ -1,0 +1,61 @@
+.table {
+  min-width: 100%;
+  background-color: #4c5261;
+  color: white;
+  text-align: center;
+  font-size: x-large;
+}
+th,
+td {
+  padding: 10px;
+}
+
+.first_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-self: center;
+  align-items: center;
+  padding-inline: 20px;
+  padding-block: 5px;
+  text-align: center;
+}
+
+.btn_delete {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #676c79;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.btn_delete:hover {
+  background-color: white;
+  color: black;
+  font-size: x-large;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn_sbmt {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #676c79;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.btn_sbmt:hover {
+  cursor: pointer;
+  font-size: x-large;
+  font-weight: bold;
+}

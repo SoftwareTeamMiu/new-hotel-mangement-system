@@ -1,0 +1,28 @@
+.table-container{
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: flex-start;
+    position: absolute;
+    width: 1235px;
+    height: 382px;
+    left: 50px;
+    top: 130px;
+    background: #FFFFFF;
+    border: 1px solid #E8F1FD;
+    border-radius: 8px;
+    margin-top: 30px; 
+    padding: 8px;
+
+  }
+  .tableheader{
+    background: #B9BDC7;
+  }
+
+
+table th,
+table td {
+  border: 1px outset black;
+  padding: 8px;
+  text-align: center;
+}
+  

@@ -1,0 +1,230 @@
+.TableRow{
+  /* Dimensions */
+  width: auto;
+  height: auto;
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* Properties */
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: #4C5261;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 0 10px 15px;
+  }
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .Value1{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value2{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value3{
+    /* Dimensions */
+    width: 120px;
+   
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value4{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value5{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value6{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value7{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value8{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value9{
+    /* Dimensions */
+    width: 120px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: 'Poppins';
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255.0, 255.0, 255.0, 1.0);
+  
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+}

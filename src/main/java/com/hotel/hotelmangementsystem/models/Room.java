@@ -1,12 +1,16 @@
 package com.hotel.hotelmangementsystem.models;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Room {
@@ -22,10 +26,21 @@ public class Room {
     @ManyToOne(targetEntity = RoomStatus.class, optional = false)
     @JoinColumn(name = "room_status_id", referencedColumnName = "id", nullable = false)
     private RoomStatus roomStatus;
-    
+
     @ManyToOne(targetEntity = Offer.class, optional = true)
     @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = true)
     private Offer offer;
+
+    @OneToMany(mappedBy = "room")
+    List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Room() {
     }
@@ -73,5 +88,4 @@ public class Room {
         this.offer = offer;
     }
 
-    
 }
