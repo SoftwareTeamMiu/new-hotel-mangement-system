@@ -1,15 +1,14 @@
 import axios from "axios";
 
-
 const token = localStorage.getItem("token");
 
 export const getAll = async (apiBaseUrl) => {
   const options = {
     url: `http://localhost:8080/api/${apiBaseUrl}`,
-    method: 'GET',
+    method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {
@@ -23,14 +22,14 @@ export const getAll = async (apiBaseUrl) => {
 
 export const createOne = async (apiBaseUrl, dataObj) => {
   const options = {
-    url: `http://localhost:8080/api/${apiBaseUrl}`,
-    method: 'POST',
+    url: `http://localhost:8080/manager/api/${apiBaseUrl}`,
+    method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json;charset=UTF-8'
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
     },
-    data: dataObj
+    data: dataObj,
   };
 
   try {
@@ -46,14 +45,14 @@ export const createOne = async (apiBaseUrl, dataObj) => {
 
 export const updateOne = async (apiBaseUrl, dataObj, id) => {
   const options = {
-    url: `http://localhost:8080/api/${apiBaseUrl}/${id}`,
-    method: 'PUT',
+    url: `http://localhost:8080/manager/api/${apiBaseUrl}/${id}`,
+    method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json;charset=UTF-8'
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
     },
-    data: dataObj
+    data: dataObj,
   };
 
   try {
@@ -69,11 +68,11 @@ export const updateOne = async (apiBaseUrl, dataObj, id) => {
 
 export const deleteOne = async (apiBaseUrl, id) => {
   const options = {
-    url: `http://localhost:8080/api/${apiBaseUrl}/${id}`,
-    method: 'DELETE',
+    url: `http://localhost:8080/manager/api/${apiBaseUrl}/${id}`,
+    method: "DELETE",
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {

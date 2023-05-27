@@ -28,7 +28,6 @@ function Receptionistpage() {
   return (
     <>
       <Header user_name={name} />
-      {console.log("ReceptionistPage")}
       <Table />
     </>
   );

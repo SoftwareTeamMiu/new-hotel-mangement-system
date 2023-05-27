@@ -21,7 +21,7 @@ import com.hotel.hotelmangementsystem.services.RoomStatusService;
 import com.hotel.hotelmangementsystem.services.RoomTypeService;
 
 @RestController
-@RequestMapping("/api/room")
+@RequestMapping("")
 public class RoomController {
     @Autowired
     private RoomServices roomServices;
@@ -32,7 +32,7 @@ public class RoomController {
     @Autowired
     private OfferServices offerServices;
 
-    @PostMapping("")
+    @PostMapping("manager/api/room")
     public ResponseEntity<String> createRoom(@RequestBody Map<String, String> request_body) {
         Room new_room = new Room();
         try {
@@ -50,7 +50,7 @@ public class RoomController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("api/room")
     public ResponseEntity getAllRooms() {
         try {
             List<Room> rooms = roomServices.getAllRooms();
@@ -60,7 +60,7 @@ public class RoomController {
         }
     }
 
-    @GetMapping("/{roomId}")
+    @GetMapping("api/room/{roomId}")
     public ResponseEntity getRoomById(@PathVariable int roomId) {
         try {
             Room room = roomServices.getRoomById(roomId);
@@ -70,7 +70,7 @@ public class RoomController {
         }
     }
 
-    @PutMapping("/{roomId}")
+    @PutMapping("manager/api/room/{roomId}")
     public ResponseEntity updateRoomById(@PathVariable int roomId, @RequestBody Map<String, String> request_body) {
         try {
             Room room = roomServices.getRoomById(roomId);
@@ -99,7 +99,7 @@ public class RoomController {
         }
     }
 
-    @DeleteMapping("/{roomId}")
+    @DeleteMapping("manager/api/room/{roomId}")
     public ResponseEntity deleteRoomById(@PathVariable int roomId) {
         try {
             Room room = roomServices.getRoomById(roomId);
@@ -114,7 +114,7 @@ public class RoomController {
         }
     }
 
-    @GetMapping("/size/{size}")
+    @GetMapping("api/room/size/{size}")
     public ResponseEntity getRoomsBySize(@PathVariable int size) {
         try {
             List<Room> rooms = roomServices.getRoomsBySize(size);
@@ -124,7 +124,7 @@ public class RoomController {
         }
     }
 
-    @GetMapping("/location/{location}")
+    @GetMapping("api/room/location/{location}")
     public ResponseEntity getRoomsByLocation(@PathVariable int location) {
         try {
             List<Room> rooms = roomServices.getRoomsByLocation(location);

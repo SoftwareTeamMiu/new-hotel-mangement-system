@@ -19,12 +19,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 
 @RestController
-@RequestMapping("/api/review")
+@RequestMapping("")
 public class ReviewController {
     @Autowired
     private ReviewService reviewService; 
 
-    @PostMapping("")
+    @PostMapping("manager/api/review")
     public ResponseEntity createReview(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
         try {
             String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
@@ -34,7 +34,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("api/review")
     public ResponseEntity getAllReviews(){
         try {
             return reviewService.getAllReviews();
@@ -43,7 +43,7 @@ public class ReviewController {
         }
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("api/review/{reviewId}")
     public ResponseEntity getReviewById(@PathVariable int reviewId){
         try {
             return reviewService.getReviewById(reviewId);
@@ -53,7 +53,7 @@ public class ReviewController {
 
     }
 
-    @PutMapping("/{reviewId}")
+    @PutMapping("manager/api/review/{reviewId}")
     public ResponseEntity updateReview(@PathVariable int reviewId, HttpServletRequest request, @RequestBody Map<String, Object> request_body){
         try {
             String token = (request.getHeader(HttpHeaders.AUTHORIZATION)).substring(7);
@@ -63,7 +63,7 @@ public class ReviewController {
         }
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("manager/api/review/{reviewId}")
     public ResponseEntity deleteReviewById(@PathVariable int reviewId){
         try {
             return reviewService.deleteReviewById(reviewId);

@@ -25,7 +25,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("manager/api/role")
 public class RoleController {
     @Autowired
     private RoleService roleService;

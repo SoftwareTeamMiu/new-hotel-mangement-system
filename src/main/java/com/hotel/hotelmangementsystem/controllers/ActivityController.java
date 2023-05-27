@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/activities")
+// @RequestMapping("/api/activities")
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
-    @GetMapping("")
+    @GetMapping("/api/activities")
     public List<Activity> getAllActivities() {
         return activityService.getAllActivities();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/api/activities/{id}")
     public Activity getActivityById(@PathVariable Integer id) {
         return activityService.getActivityById(id);
     }
-    @PostMapping("")
+    @PostMapping("manager/api/activities")
     public Activity createActivity(@RequestBody Activity activity) {
         return activityService.createOrUpdateActivity(new Activity(activity.getDurationHrs(), activity.getDate(), activity.getHostName()));
     }
-    @PutMapping("/{id}")
+    @PutMapping("manager/api/activities/{id}")
     public Activity updateTodo(@PathVariable Integer id, @RequestBody Activity activity) {
         Activity existingActivity = activityService.getActivityById(id);
         if (existingActivity == null) {
@@ -35,7 +35,7 @@ public class ActivityController {
         existingActivity.setHostName(activity.getHostName());
         return activityService.createOrUpdateActivity(existingActivity);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("manager/api/activities/{id}")
     public void deleteTodoById(@PathVariable Integer id) {
         activityService.deleteActivityById(id);
     }

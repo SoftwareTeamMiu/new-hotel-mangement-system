@@ -22,13 +22,13 @@ import com.hotel.hotelmangementsystem.models.Offer;
 import com.hotel.hotelmangementsystem.services.OfferServices;
 
 @RestController
-@RequestMapping("api/offers")
+@RequestMapping("")
 public class OfferController {
 
     @Autowired
     private OfferServices offerServices;
 
-    @PostMapping("")
+    @PostMapping("manager/api/offers")
     public ResponseEntity<String> createOffer(@RequestBody Map<String, String> request_body) {
         Offer new_offer = new Offer();
         try {
@@ -47,7 +47,7 @@ public class OfferController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/api/offers")
     public ResponseEntity getAllOffers() {
         try {
             List<Offer> offers = offerServices.getAllOffers();
@@ -57,7 +57,7 @@ public class OfferController {
         }
     }
 
-    @GetMapping("/{offerId}")
+    @GetMapping("/api/offers/{offerId}")
     public ResponseEntity getOfferById(@PathVariable int offerId) {
         try {
             Offer offer = offerServices.getOfferById(offerId);
@@ -71,7 +71,7 @@ public class OfferController {
         }
     }
 
-    @PutMapping("/{offerId}")
+    @PutMapping("manager/api/offers/{offerId}")
     public ResponseEntity<String> upadteOffer(@PathVariable int offerId, @RequestBody Map<String, String> request_body) {
         try {
             Offer offer = offerServices.getOfferById(offerId);
@@ -95,7 +95,7 @@ public class OfferController {
         }
     }
 
-    @DeleteMapping("/{offerId}")
+    @DeleteMapping("manager/api/offers/{offerId}")
     public ResponseEntity<String> deleteOffer(@PathVariable int offerId) {
         try {
             Offer offer = offerServices.getOfferById(offerId);
