@@ -63,10 +63,7 @@ function UserActivities() {
                 <tr key={activity.id}>
                   <td>{activity.hostName}</td>
                   <td>{activity.durationHrs}</td>
-                  <td>
-                    {activity.date.substring(12, 16)} -{" "}
-                    {activity.date.substring(0, 10)}
-                  </td>
+                  <td>{activity.date}</td>
                 </tr>
               ))}
             </tbody>

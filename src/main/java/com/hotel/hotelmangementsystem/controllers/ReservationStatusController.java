@@ -16,33 +16,34 @@ import com.hotel.hotelmangementsystem.models.ReservationStatus;
 import com.hotel.hotelmangementsystem.services.ReservationStatusService;
 
 @RestController
-@RequestMapping("/api/reservationstatus")
+@RequestMapping("")
 public class ReservationStatusController {
 
     @Autowired
     private ReservationStatusService reservationStatusService;
 
-    @GetMapping("")
+    @GetMapping("api/reservationstatus")
     public List<ReservationStatus> getAllReservationStatus() {
         return reservationStatusService.getAllReservationStatus();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("api/reservationstatus/{id}")
     public ReservationStatus getReservationStatusById(@PathVariable Integer id) {
         return reservationStatusService.getReservationStatusById(id);
     }
 
-    @PostMapping("")
+    @PostMapping("manager/api/reservationstatus")
     public ReservationStatus addReservationStatus(@RequestBody ReservationStatus reservationStatus) {
         return reservationStatusService.addReservationStatus(reservationStatus);
     }
 
-    @PutMapping("/{id}")
-    public ReservationStatus updateReservationStatus(@PathVariable Integer id, @RequestBody ReservationStatus reservationStatus) {
+    @PutMapping("manager/api/reservationstatus/{id}")
+    public ReservationStatus updateReservationStatus(@PathVariable Integer id,
+            @RequestBody ReservationStatus reservationStatus) {
         return reservationStatusService.updateReservationStatus(id, reservationStatus);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("manager/api/reservationstatus/{id}")
     public String deleteReservationStatus(@PathVariable Integer id) {
         reservationStatusService.deleteReservationStatus(id);
         return "Reservation status with id " + id + " has been deleted";

@@ -2,6 +2,8 @@ package com.hotel.hotelmangementsystem.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double percentage;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Africa/Cairo")
     private Date expirationDate;
 
     public Offer() {

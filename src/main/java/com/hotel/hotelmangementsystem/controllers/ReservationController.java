@@ -1,20 +1,15 @@
 package com.hotel.hotelmangementsystem.controllers;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Dynamic;
 import com.hotel.hotelmangementsystem.models.*;
 import com.hotel.hotelmangementsystem.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
 @RestController
-@RequestMapping("/api/reservation")
+@RequestMapping("")
 public class ReservationController {
 
     @Autowired
@@ -51,7 +46,7 @@ public class ReservationController {
 
     String reservation_base_url = "http://localhost:9090/api/reservation";
 
-    @PostMapping("")
+    @PostMapping("api/reservation")
     public ResponseEntity createReservation(HttpServletRequest request, @RequestBody Map<String, Object> request_body) {
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -72,7 +67,7 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("api/reservation")
     public ResponseEntity getAllReservations(HttpServletRequest request) {
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -94,27 +89,7 @@ public class ReservationController {
         }
     }
 
-    // @GetMapping("/{userId}")
-    // public ResponseEntity<?> getReservationById(Long userId, HttpServletRequest
-    // request) {
-    // try {
-    // HttpHeaders headers = new HttpHeaders();
-    // String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-    // headers.set(HttpHeaders.AUTHORIZATION, token);
-
-    // return restTemplate.getForObject(
-    // reservation_base_url + "/" + userId,
-    // ResponseEntity.class,
-    // headers);
-    // } catch (Exception e) {
-    // // Handle exception
-    // System.out.println("Error getting reservations: " + e.getMessage());
-    // return ResponseEntity.badRequest().body("Error getting reservations: " +
-    // e.getMessage());
-    // }
-    // }
-
-    @GetMapping("/{userId}")
+    @GetMapping("api/reservation/{userId}")
     public ResponseEntity<?> getReservationById(@PathVariable Long userId, HttpServletRequest request) {
         try {
             String token = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -139,7 +114,7 @@ public class ReservationController {
         }
     }
 
-    @DeleteMapping("/{reservationID}")
+    @DeleteMapping("api/reservation/{reservationID}")
     public ResponseEntity deleteReservationByID(@PathVariable int reservationID, HttpServletRequest request) {
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -161,7 +136,7 @@ public class ReservationController {
         }
     }
 
-    @PutMapping("/{ReservationID}")
+    @PutMapping("api/reservation/{ReservationID}")
     public ResponseEntity updateReservationID(@PathVariable int ReservationID,
             @RequestBody Map<String, Object> request_body, HttpServletRequest request) {
         try {
@@ -184,7 +159,7 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("/user")
+    @GetMapping("api/reservation/user")
     public ResponseEntity getAllReservationsByUser(HttpServletRequest request) {
         try {
             String token = request.getHeader(HttpHeaders.AUTHORIZATION);

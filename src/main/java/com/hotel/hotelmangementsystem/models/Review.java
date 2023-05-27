@@ -1,5 +1,8 @@
 package com.hotel.hotelmangementsystem.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,6 +23,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne(targetEntity = User.class, optional = false)
+    
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
     @NotBlank(message = "review_title is required")
@@ -31,7 +35,7 @@ public class Review {
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    // @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Room room;
 
     public Room getRoom() {

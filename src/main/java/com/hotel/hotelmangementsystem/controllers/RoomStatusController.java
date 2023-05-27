@@ -18,17 +18,17 @@ import com.hotel.hotelmangementsystem.models.RoomStatus;
 import com.hotel.hotelmangementsystem.services.RoomStatusService;
 
 @RestController
-@RequestMapping("/api/roomstatus")
+@RequestMapping("")
 public class RoomStatusController {
     @Autowired
     private RoomStatusService roomStatusService;
 
-    @GetMapping("")
+    @GetMapping("api/roomstatus")
     public List<RoomStatus> getAllRoomStatus() {
         return roomStatusService.getAllRoomStatus();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("api/roomstatus/{id}")
     public ResponseEntity<RoomStatus> getRoomStatusById(@PathVariable(value = "id") int roomStatusId) {
         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
         if (roomStatus == null) {
@@ -37,7 +37,7 @@ public class RoomStatusController {
         return ResponseEntity.ok().body(roomStatus);
     }
 
-    @PostMapping("")
+    @PostMapping("manager/api/roomstatus")
     public ResponseEntity createRoomStatus(@RequestBody Map<String, String> roomStatusrequestbody) {
         try {
             RoomStatus roomstatus = new RoomStatus();
@@ -50,7 +50,7 @@ public class RoomStatusController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("manager/api/roomstatus/{id}")
     public ResponseEntity<RoomStatus> updateRoomStatus(@PathVariable(value = "id") int roomStatusId,
             @RequestBody RoomStatus roomStatusDetails) {
         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
@@ -62,7 +62,7 @@ public class RoomStatusController {
         return ResponseEntity.ok(updatedRoomStatus);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("manager/api/roomstatus/{id}")
     public ResponseEntity<RoomStatus> deleteRoomStatus(@PathVariable(value = "id") int roomStatusId) {
         RoomStatus roomStatus = roomStatusService.getRoomStatusById(roomStatusId);
         if (roomStatus == null) {

@@ -22,45 +22,47 @@ import com.hotel.hotelmangementsystem.models.Offer;
 import com.hotel.hotelmangementsystem.services.OfferServices;
 
 @RestController
-@RequestMapping("api/offers")
+@RequestMapping("")
 public class OfferController {
 
     @Autowired
-    private OfferServices offerServices;
+    private OfferServices offerService;
 
-    @PostMapping("")
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    @PostMapping("manager/api/offers")
     public ResponseEntity<String> createOffer(@RequestBody Map<String, String> request_body) {
         Offer new_offer = new Offer();
         try {
             new_offer.setPercentage(Double.parseDouble(request_body.get("offer_percentage")));
 
             // parse date from String to Date
-            String expirationStringDate = request_body.get("offer_expiration_date");
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            Date expirationDate = dateFormat.parse(expirationStringDate);
-            new_offer.setExpirationDate(expirationDate);
+            String expiration_string_date = request_body.get("offer_expiration_date");
 
-            offerServices.createOffer(new_offer);
+            Date expiration_date = dateFormat.parse(expiration_string_date);
+            new_offer.setExpirationDate(expiration_date);
+
+            offerService.createOffer(new_offer);
             return new ResponseEntity<>("Offer created successfully", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error creating offer: " + e.getMessage());
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/api/offers")
     public ResponseEntity getAllOffers() {
         try {
-            List<Offer> offers = offerServices.getAllOffers();
+            List<Offer> offers = offerService.getAllOffers();
             return new ResponseEntity<>(offers, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error getting all offers: " + e.getMessage());
         }
     }
 
-    @GetMapping("/{offerId}")
+    @GetMapping("/api/offers/{offerId}")
     public ResponseEntity getOfferById(@PathVariable int offerId) {
         try {
-            Offer offer = offerServices.getOfferById(offerId);
+            Offer offer = offerService.getOfferById(offerId);
             if (offer != null) {
                 return new ResponseEntity<>(offer, HttpStatus.OK);
             } else {
@@ -71,21 +73,21 @@ public class OfferController {
         }
     }
 
-    @PutMapping("/{offerId}")
-    public ResponseEntity<String> upadteOffer(@PathVariable int offerId, @RequestBody Map<String, String> request_body) {
+    @PutMapping("manager/api/offers/{offerId}")
+    public ResponseEntity<String> upadteOffer(@PathVariable int offerId,
+            @RequestBody Map<String, String> request_body) {
         try {
-            Offer offer = offerServices.getOfferById(offerId);
+            Offer offer = offerService.getOfferById(offerId);
             if (offer != null) {
                 offer.setPercentage(Double.parseDouble(request_body.get("offer_percentage")));
 
                 // parse date from String to Date
-                String expirationStringDate = request_body.get("offer_expiration_date");
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                Date expirationDate = dateFormat.parse(expirationStringDate);
+                String expiration_string_date = request_body.get("offer_expiration_date");
+                Date expiration_date = dateFormat.parse(expiration_string_date);
 
-                offer.setExpirationDate(expirationDate);
+                offer.setExpirationDate(expiration_date);
 
-                offerServices.createOffer(offer);
+                offerService.createOffer(offer);
                 return new ResponseEntity<>("Offer Updated", HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("Offer Not found", HttpStatus.NOT_FOUND);
@@ -95,12 +97,12 @@ public class OfferController {
         }
     }
 
-    @DeleteMapping("/{offerId}")
+    @DeleteMapping("manager/api/offers/{offerId}")
     public ResponseEntity<String> deleteOffer(@PathVariable int offerId) {
         try {
-            Offer offer = offerServices.getOfferById(offerId);
+            Offer offer = offerService.getOfferById(offerId);
             if (offer != null) {
-                offerServices.deleteOfferById(offer.getId());
+                offerService.deleteOfferById(offer.getId());
                 return new ResponseEntity<>("Offer Deleted", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Offer Not found", HttpStatus.NOT_FOUND);

@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hotel.hotelmangementsystem.models.Role;
 import com.hotel.hotelmangementsystem.services.RoleService;
 
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("manager/api/role")
 public class RoleController {
     @Autowired
     private RoleService roleService;

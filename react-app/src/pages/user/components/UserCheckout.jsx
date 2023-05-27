@@ -20,6 +20,7 @@ export default function UserCheckout() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const [rooms, setRooms] = useState([]);
   const [startDate, setStartDate] = useState(formattedDate);
+  const [dateSelectedt, setDateSelectedt] = useState(true);
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ export default function UserCheckout() {
 
   const handleSelectionStartDate = (selectedValue) => {
     setStartDate(selectedValue);
+    setDateSelectedt(false);
   };
 
   const handleSelectionEndDate = (selectedValue) => {
@@ -152,6 +154,7 @@ export default function UserCheckout() {
                 <DatePicker
                   startDate={formattedDate}
                   onSelect={handleSelectionStartDate}
+                  disabled={false}
                 />
               </div>
               <div>
@@ -159,6 +162,8 @@ export default function UserCheckout() {
                 <DatePicker
                   startDate={startDate}
                   onSelect={handleSelectionEndDate}
+                  closed
+                  disabled={dateSelectedt}
                 />
               </div>
             </div>

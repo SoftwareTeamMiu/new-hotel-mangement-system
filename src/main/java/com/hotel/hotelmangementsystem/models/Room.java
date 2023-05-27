@@ -2,6 +2,9 @@ package com.hotel.hotelmangementsystem.models;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,18 +23,21 @@ public class Room {
     private double price;
 
     @ManyToOne(targetEntity = RoomType.class, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "room_type_id", referencedColumnName = "id", nullable = false)
     private RoomType roomType;
 
     @ManyToOne(targetEntity = RoomStatus.class, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "room_status_id", referencedColumnName = "id", nullable = false)
     private RoomStatus roomStatus;
 
     @ManyToOne(targetEntity = Offer.class, optional = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = true)
     private Offer offer;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Review> reviews;
 
     public List<Review> getReviews() {

@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getReservations, deleteReservation, getReservationsStatus, updateReservation } from '../../../services/ReservationService';
+import React, { useEffect, useState } from "react";
+import {
+  getReservations,
+  deleteReservation,
+  getReservationsStatus,
+  updateReservation,
+} from "../../../services/ReservationService";
 import DropdownMenu from "../../../components/DropdownMenu";
 import deletebtn from "../css/deletebtn.css";
 import savebtn from "../css/savebtn.css";
@@ -13,9 +18,10 @@ function TableComponent() {
   const [onDelete, setOnDelete] = useState(false);
   const [ReservationStatusKeys, setReservationStatusKeys] = useState([]);
   const [ReservationStatusValues, setReservationStatusValues] = useState([]);
-  const [selectedReservationStatus, setSelectedReservationStatus] = useState("");
+  const [selectedReservationStatus, setSelectedReservationStatus] =
+    useState("");
   const [refreshPage, setRefreshPage] = useState(false);
-  
+
   function handleClose() {
     setOpen(false);
   }
@@ -29,23 +35,22 @@ function TableComponent() {
   };
 
   const handleMakeReservationstatus = async (reservation_id) => {
-      let reservationstatus = {
-        reservation_status_id: selectedReservationStatus.toString(),
-      };
-      console.log(reservationstatus);
-      await updateReservation(reservation_id,reservationstatus)
-        .then((res) => {
-          setErrorMessage("Reservationstatus updated successfully");
-          handleOpen();
-          console.log(res);
-          setRefreshPage(true);
-        })
-        .catch((err) => {
-          setErrorMessage("Error while updating reservationstatus");
-          handleOpen();
-        });
-    }
-
+    let reservationstatus = {
+      reservation_status_id: selectedReservationStatus.toString(),
+    };
+    console.log(reservationstatus);
+    await updateReservation(reservation_id, reservationstatus)
+      .then((res) => {
+        setErrorMessage("Reservationstatus updated successfully");
+        handleOpen();
+        console.log(res);
+        setRefreshPage(true);
+      })
+      .catch((err) => {
+        setErrorMessage("Error while updating reservationstatus");
+        handleOpen();
+      });
+  };
 
   useEffect(() => {
     document.title = "View Reservations";
@@ -61,7 +66,7 @@ function TableComponent() {
           setLoading(false);
           handleOpen();
         });
-    };  
+    };
     const fetchReservations = async () => {
       try {
         const res = await getReservations();
@@ -80,16 +85,15 @@ function TableComponent() {
       } else {
         setLoading(false);
       }
-      
     };
-      
+
     fetchReservations();
-    fetchRoomStatus(); 
+    fetchRoomStatus();
     if (refreshPage) {
       window.location.reload();
     }
   }, [onDelete, refreshPage]);
-  
+
   return (
     <div>
       {loading === true ? <div>Loading...</div> : null}
@@ -103,9 +107,9 @@ function TableComponent() {
           >
             <h1>All Reservations:</h1>
           </div>
-          <table className='table-container'>
+          <table className="table-container">
             <thead>
-              <tr className='tableheader'>
+              <tr className="tableheader">
                 <th>User Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
@@ -118,8 +122,8 @@ function TableComponent() {
             </thead>
             <tbody>
               {reservations.map((reservation) => (
-                <tr className='tabledata' key={reservation.id}>
-                 <td>{reservation.customer.name}</td>
+                <tr className="tabledata" key={reservation.id}>
+                  <td>{reservation.customer.name}</td>
                   <td>{reservation.start_date.substring(0, 10)}</td>
                   <td>{reservation.end_date.substring(0, 10)}</td>
                   <td>{reservation.total_price}</td>
@@ -133,11 +137,19 @@ function TableComponent() {
                     />
                   </td>
                   <td>{reservation.paymentMethods.method_name}</td>
-                  <td>
-                  <button
-                    className='deletebtn'
+                  <td
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <button
+                      className="deletebtn"
                       onClick={() => {
-                        const confirmed = window.confirm("Are you sure you want to delete this reservation?");
+                        const confirmed = window.confirm(
+                          "Are you sure you want to delete this reservation?"
+                        );
                         if (confirmed) {
                           deleteReservation(reservation.id);
                           setOnDelete(true);
@@ -145,12 +157,16 @@ function TableComponent() {
                       }}
                     >
                       Delete
-                  </button>
-
-                    <button className='savebtn' onClick={() => handleMakeReservationstatus(reservation.id)} >
-                      Save 
                     </button>
-                    
+
+                    <button
+                      className="savebtn"
+                      onClick={() =>
+                        handleMakeReservationstatus(reservation.id)
+                      }
+                    >
+                      Save
+                    </button>
                   </td>
                 </tr>
               ))}

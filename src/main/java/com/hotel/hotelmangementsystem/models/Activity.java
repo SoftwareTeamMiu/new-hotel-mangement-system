@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Activity {
     @Id
@@ -15,6 +17,7 @@ public class Activity {
 
     private int durationHrs;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Africa/Cairo")
     private Date date;
 
     private String hostName;
