@@ -19,6 +19,7 @@ const Report = (props) => {
   const [formDataObj, setFormDataObj] = useState(new props.model()); // Object containing the data of the form fields currently
   const [formDataId, setFormDataId] = useState(); // Id of the form id field
   const [latestId, setLatestId] = useState(); // The last id assigned to an object in the database
+  const [admin_username, setAdmin_username] = useState("Admin"); // The last id assigned to an object in the database
 
   // Debugger
   useEffect(() => {
@@ -30,6 +31,7 @@ const Report = (props) => {
       formDataId: formDataId,
       latestId: latestId,
     };
+    setAdmin_username(JSON.parse(localStorage.getItem("user")).username);
     console.log("Debugobj");
     console.log(Debugobj);
   }, [dataArr, valDataArr, idDataArr, formDataObj, formDataId, latestId]);
@@ -125,7 +127,7 @@ const Report = (props) => {
     <div class="Report">
       <Sidebar />
       <div class="Main">
-        <MainHeader username="Admin" headTitle={props.reportName} />
+        <MainHeader username={admin_username} headTitle={props.reportName} />
         <div class="Form">
           <div class="Row">{formFields}</div>
           {/* <div class="Row">
