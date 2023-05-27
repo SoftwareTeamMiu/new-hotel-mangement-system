@@ -15,7 +15,7 @@ const ReportReadOnly = (props) => {
   const [formDataObj, setFormDataObj] = useState(new props.model()); // Object containing the data of the form fields currently
   const [formDataId, setFormDataId] = useState(); // Id of the form id field
   const [latestId, setLatestId] = useState(); // The last id assigned to an object in the database
-
+  const [admin_username, setAdmin_username] = useState("Admin");
   // Debugger
   useEffect(() => {
     const Debugobj = {
@@ -26,6 +26,7 @@ const ReportReadOnly = (props) => {
       formDataId: formDataId,
       latestId: latestId,
     };
+    setAdmin_username(JSON.parse(localStorage.getItem("user")).username);
   }, [dataArr, valDataArr, idDataArr, formDataObj, formDataId, latestId]);
 
   // Utility for refreshing the page
@@ -104,7 +105,7 @@ const ReportReadOnly = (props) => {
     <div class="Report">
       <Sidebar />
       <div class="Main">
-        <MainHeader username="Admin" headTitle={props.reportName} />
+        <MainHeader username={admin_username} headTitle={props.reportName} />
         {valDataArr !== null ? (
           <Table
             onClick={onRowClick}

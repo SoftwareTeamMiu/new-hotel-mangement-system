@@ -16,7 +16,7 @@ const RoomReportDropDown = (props) => {
   const [formDataObj, setFormDataObj] = useState(new props.model()); // Object containing the data of the form fields currently
   const [formDataId, setFormDataId] = useState(); // Id of the form id field
   const [latestId, setLatestId] = useState(); // The last id assigned to an object in the database
-  // const [roomType, setRoomType] = useState("");
+  const [admin_username, setAdmin_username] = useState("Admin");
   // Debugger
   useEffect(() => {
     const Debugobj = {
@@ -29,6 +29,7 @@ const RoomReportDropDown = (props) => {
     };
     console.log("Debugobj");
     console.log(Debugobj);
+    setAdmin_username(JSON.parse(localStorage.getItem("user")).username);
   }, [dataArr, valDataArr, idDataArr, formDataObj, formDataId, latestId]);
 
   // Utility for refreshing the page
@@ -167,7 +168,7 @@ const RoomReportDropDown = (props) => {
     <div class="Report">
       <Sidebar />
       <div class="Main">
-        <MainHeader username="Admin" headTitle={props.reportName} />
+        <MainHeader username={admin_username} headTitle={props.reportName} />
         <div class="Form">
           <div class="Row">{formFields}</div>
           {/* <div class="Row">
