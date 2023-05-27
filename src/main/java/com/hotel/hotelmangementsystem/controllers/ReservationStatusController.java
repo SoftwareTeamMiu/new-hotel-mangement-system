@@ -38,7 +38,8 @@ public class ReservationStatusController {
     }
 
     @PutMapping("manager/api/reservationstatus/{id}")
-    public ReservationStatus updateReservationStatus(@PathVariable Integer id, @RequestBody ReservationStatus reservationStatus) {
+    public ReservationStatus updateReservationStatus(@PathVariable Integer id,
+            @RequestBody ReservationStatus reservationStatus) {
         return reservationStatusService.updateReservationStatus(id, reservationStatus);
     }
 

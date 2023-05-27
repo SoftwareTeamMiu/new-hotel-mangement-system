@@ -1,8 +1,6 @@
 package com.hotel.hotelmangementsystem.controllers;
 
 import com.hotel.hotelmangementsystem.models.PaymentMethods;
-import com.hotel.hotelmangementsystem.models.RoomType;
-import com.hotel.hotelmangementsystem.repositories.PaymentMethodsRepository;
 import com.hotel.hotelmangementsystem.services.PaymentMethodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
