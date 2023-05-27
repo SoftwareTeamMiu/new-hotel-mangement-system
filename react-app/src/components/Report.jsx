@@ -1,14 +1,18 @@
 import Btn from "./Btn";
 import InputSectionSm from "./InputSectionSm";
+import DateSectionSm from "./DateSectionSm";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 import Table from "./Table";
 import "./css/Report.scss";
 
 import { getAll, createOne, updateOne, deleteOne } from "../services/Service";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Report = (props) => {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const formattedDate = tomorrow.toISOString().slice(0, 10);
   const [dataArr, setDataArr] = useState(); // Array of Objects representing database data (with sub-objects replaced with values)
   const [valDataArr, setValDataArr] = useState();
   const [idDataArr, setIdDataArr] = useState();
@@ -62,6 +66,7 @@ const Report = (props) => {
     const selectedObj = findObjFromId(idDataArr, id);
     setFormDataObj(selectedObj);
     setFormDataId(id);
+    console.log(formDataObj);
   };
   // Handler for deleting the selected data row from the database
   const onDelete = () => {
@@ -76,6 +81,14 @@ const Report = (props) => {
           label={columnName}
           defaultValue={formDataId}
           disabled={true}
+        />
+      );
+    } else if (columnName.toLowerCase().includes("date")) {
+      return (
+        <DateSectionSm
+          label={columnName}
+          defaultValue={formDataObj[columnName]}
+          onInputChange={onInputChange}
         />
       );
     } else {
