@@ -8,18 +8,20 @@ function UserActivitiesPage() {
   const [name, setName] = React.useState("");
   var user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    document.title = "User Main Page";
-    // console.log(user);
+    document.title = "Activities Page";
     const checkAuth = async () => {
       const token = await localStorage.getItem("token");
-      if (!token) {
+      if (token == null) {
         navigate("/login");
       } else {
+        if (user.role.roleTitle !== "User") {
+          navigate("/login");
+        }
         setName(user.name);
       }
     };
     checkAuth();
-  });
+  }, []);
 
   return (
     <>

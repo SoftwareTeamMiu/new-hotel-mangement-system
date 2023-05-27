@@ -10,19 +10,20 @@ function Receptionistpage() {
   const [name, setName] = React.useState("");
   var user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    document.title = "Receptionist Page";
+    document.title = "Activities Page";
     const checkAuth = async () => {
       const token = await localStorage.getItem("token");
-      if (!token) {
+      if (token == null) {
         navigate("/login");
-        console.log("token not found");
       } else {
+        if (user.role.roleTitle !== "Receptionist") {
+          navigate("/login");
+        }
         setName(user.name);
-        console.log("token found");
       }
     };
     checkAuth();
-  });
+  }, []);
 
   return (
     <>

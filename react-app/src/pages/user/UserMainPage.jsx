@@ -12,12 +12,15 @@ function UserMainPage() {
 
   var user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    document.title = "User Main Page";
+    document.title = "Main Page";
     const checkAuth = async () => {
       const token = await localStorage.getItem("token");
       if (token == null) {
         navigate("/login");
       } else {
+        if (user.role.roleTitle !== "User") {
+          navigate("/login");
+        }
         setName(user.name);
         setLoading(false);
         // console.log("set loading to false done");

@@ -7,8 +7,26 @@ import {
   getRoomOffers,
 } from "../../services/RoomService";
 import MessageModal from "../../components/MessageModal";
+import { useNavigate } from "react-router-dom";
 
 const RoomTypeReport = () => {
+  const navigate = useNavigate();
+  var user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    document.title = "Activities Page";
+    const checkAuth = async () => {
+      const token = await localStorage.getItem("token");
+      if (token == null) {
+        navigate("/login");
+      } else {
+        if (user.role.roleTitle !== "Manager") {
+          navigate("/login");
+        }
+      }
+    };
+    checkAuth();
+  }, []);
+
   const columns = ["id", "price", "roomType", "roomStatus", "offer"];
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
