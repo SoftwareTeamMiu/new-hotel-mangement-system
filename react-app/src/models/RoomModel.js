@@ -10,11 +10,14 @@ export default class RoomModel {
   static valConstructor = (dataObj) => {
     let id = dataObj.id;
     let price = dataObj.price;
-    let roomType = dataObj.roomType.id;
+    let roomType = `Size: ${dataObj.roomType.size} - location: ${dataObj.roomType.location}`;
     let roomStatus = dataObj.roomStatus.status;
     var offer;
     if (dataObj.offer != null) {
-      offer = dataObj.offer.id;
+      // offer = dataObj.offer.id;
+      offer = `${dataObj.offer.percentage * 100}% - ${
+        dataObj.offer.expirationDate
+      }`;
     } else {
       offer = "no offer";
     }

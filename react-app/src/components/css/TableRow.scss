@@ -1,4 +1,4 @@
-.TableRow{
+.TableRow {
   /* Dimensions */
   width: auto;
   height: auto;
@@ -11,7 +11,7 @@
   transition: all 0.4s;
 
   &:hover {
-    background-color: #4C5261;
+    background-color: #4c5261;
     border-radius: 8px;
     cursor: pointer;
     padding: 10px 0 10px 15px;
@@ -21,7 +21,7 @@
   & * {
     box-sizing: border-box;
   }
-  .Value1{
+  .Value1 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -31,20 +31,20 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value2{
+  .Value2 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -54,66 +54,43 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value3{
+  .Value3 {
     /* Dimensions */
-    width: 120px;
-   
+    width: 180px;
+
     /* Layout */
     display: flex;
     text-align: left;
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value4{
-    /* Dimensions */
-    width: 120px;
-    height: 21px;
-    /* Layout */
-    display: flex;
-    text-align: left;
-    align-items: flex-start;
-    letter-spacing: 0.02em;
-    /* Styling */
-    font-family: 'Poppins';
-    font-weight: 400;
-    text-transform: none;
-    font-size: 14px;
-    /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
-    &,
-    & * {
-      box-sizing: border-box;
-    }
-  }
-
-  .Value5{
+  .Value4 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -123,20 +100,43 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value6{
+  .Value5 {
+    /* Dimensions */
+    width: 180px;
+    height: 21px;
+    /* Layout */
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+    /* Styling */
+    font-family: "Poppins";
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    /* Properties */
+    color: rgba(255, 255, 255, 1);
+
+    &,
+    & * {
+      box-sizing: border-box;
+    }
+  }
+
+  .Value6 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -146,20 +146,20 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value7{
+  .Value7 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -169,20 +169,20 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value8{
+  .Value8 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -192,20 +192,20 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;
     }
   }
 
-  .Value9{
+  .Value9 {
     /* Dimensions */
     width: 120px;
     height: 21px;
@@ -215,13 +215,13 @@
     align-items: flex-start;
     letter-spacing: 0.02em;
     /* Styling */
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 400;
     text-transform: none;
     font-size: 14px;
     /* Properties */
-    color: rgba(255.0, 255.0, 255.0, 1.0);
-  
+    color: rgba(255, 255, 255, 1);
+
     &,
     & * {
       box-sizing: border-box;

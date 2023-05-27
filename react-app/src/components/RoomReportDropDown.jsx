@@ -1,5 +1,6 @@
 import Btn from "./Btn";
 import InputSectionSm from "./InputSectionSm";
+import InputSectionDrop from "./InputSectionDrop";
 import MainHeader from "./MainHeader";
 import Sidebar from "./Sidebar";
 import Table from "./Table";
@@ -8,14 +9,14 @@ import "./css/Report.scss";
 import { getAll, createOne, updateOne, deleteOne } from "../services/Service";
 import { useEffect, useState } from "react";
 
-const Report = (props) => {
+const RoomReportDropDown = (props) => {
   const [dataArr, setDataArr] = useState(); // Array of Objects representing database data (with sub-objects replaced with values)
   const [valDataArr, setValDataArr] = useState();
   const [idDataArr, setIdDataArr] = useState();
   const [formDataObj, setFormDataObj] = useState(new props.model()); // Object containing the data of the form fields currently
   const [formDataId, setFormDataId] = useState(); // Id of the form id field
   const [latestId, setLatestId] = useState(); // The last id assigned to an object in the database
-
+  // const [roomType, setRoomType] = useState("");
   // Debugger
   useEffect(() => {
     const Debugobj = {
@@ -39,7 +40,7 @@ const Report = (props) => {
   /* --------- Event Handlers --------- */
   // Handler for updating the Form Data Obj with each new input
   const onInputChange = (value, field) =>
-    setFormDataObj({ ...formDataObj, [field]: value });
+    setFormDataObj({ ...formDataObj, [field]: Number(value) });
   // Handler for clearing the values of the Form Data Obj for new input
   const onClear = () => {
     setFormDataObj(new props.model());
@@ -62,6 +63,7 @@ const Report = (props) => {
     const selectedObj = findObjFromId(idDataArr, id);
     setFormDataObj(selectedObj);
     setFormDataId(id);
+    // setRoomType(selectedObj.roomType);
   };
   // Handler for deleting the selected data row from the database
   const onDelete = () => {
@@ -70,7 +72,7 @@ const Report = (props) => {
 
   // Dynamic Fields
   const formFields = props.columns.map((columnName) => {
-    if (columnName == "id") {
+    if (columnName === "id") {
       return (
         <InputSectionSm
           label={columnName}
@@ -78,13 +80,66 @@ const Report = (props) => {
           disabled={true}
         />
       );
-    } else {
+    } else if (columnName === "roomType") {
+      var roomTypeMenuVals = [];
+      props.roomTypes.forEach((roomType) => {
+        roomTypeMenuVals.push({
+          id: roomType.id,
+          value: `Size: ${roomType.size} - location: ${roomType.location}`,
+        });
+      });
+
       return (
-        <InputSectionSm
+        <InputSectionDrop
+          dataMenuVals={roomTypeMenuVals}
           label={columnName}
           defaultValue={formDataObj[columnName]}
           onInputChange={onInputChange}
         />
+      );
+    } else if (columnName === "roomStatus") {
+      var roomStatuesMenuVals = [];
+      props.roomStatueses.forEach((roomStatues) => {
+        roomStatuesMenuVals.push({
+          id: roomStatues.id,
+          value: roomStatues.status,
+        });
+      });
+
+      return (
+        <InputSectionDrop
+          dataMenuVals={roomStatuesMenuVals}
+          label={columnName}
+          defaultValue={formDataObj[columnName]}
+          onInputChange={onInputChange}
+        />
+      );
+    } else if (columnName === "offer") {
+      var roomOffersMenuVals = [];
+      props.roomOffers.forEach((roomOffer) => {
+        roomOffersMenuVals.push({
+          id: roomOffer.id,
+          value: `${roomOffer.percentage * 100}% - ${roomOffer.expirationDate}`,
+        });
+      });
+
+      return (
+        <InputSectionDrop
+          dataMenuVals={roomOffersMenuVals}
+          label={columnName}
+          defaultValue={formDataObj[columnName]}
+          onInputChange={onInputChange}
+        />
+      );
+    } else {
+      return (
+        <>
+          <InputSectionSm
+            label={columnName}
+            defaultValue={formDataObj[columnName]}
+            onInputChange={onInputChange}
+          />
+        </>
       );
     }
   });
@@ -136,4 +191,4 @@ const Report = (props) => {
   );
 };
 
-export default Report;
+export default RoomReportDropDown;
